@@ -1,31 +1,38 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>برای یک روز خاص</title>
+    <title>برای آکاری</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@400;500&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- فضای پس‌زمینه -->
+    <!-- Background -->
     <div class="grain"></div>
+
     <div class="ambient ambient-red"></div>
     <div class="ambient ambient-green"></div>
 
+
     <main id="app">
 
-        <!-- =========================
-             01 — INTRO
-        ========================== -->
+
+        <!-- =====================================
+             PAGE 01
+             INTRO
+        ====================================== -->
 
         <section class="page active" id="page1">
 
@@ -36,50 +43,62 @@
             </div>
 
             <div class="intro-label">
-                A LITTLE SOMETHING
+                A LITTLE THING FOR AKARI
             </div>
 
             <h1 class="hero-title">
                 یک روز
                 <br>
-                <i>خاص.</i>
+                <i>دو تولد.</i>
             </h1>
 
             <p class="hero-text">
-                بعضی تاریخ‌ها فقط یک تاریخ نیستن.
+                از بین تمام تاریخ‌های تقویم،
                 <br>
-                بعضیاشون یه داستان کوچیک با خودشون دارن.
+                عجیب است که دقیقاً یک روز
+                برای شروع شدنِ هردومون انتخاب شد.
+                <br><br>
+                مسیرها اما همیشه شبیه هم نمی‌مونن.
             </p>
 
             <button class="enter-btn" onclick="nextPage()">
-                <span>وارد شو</span>
+                <span>شروع کنیم</span>
                 <b>↗</b>
             </button>
 
             <div class="birth-note">
-                SAME DATE
+                SAME BEGINNING
                 <br>
-                TWO STORIES
+                DIFFERENT DESTINATIONS
             </div>
 
         </section>
 
 
-        <!-- =========================
-             02 — CAT
-        ========================== -->
+
+        <!-- =====================================
+             PAGE 02
+             AKARI
+        ====================================== -->
 
         <section class="page" id="page2">
 
-            <div class="page-index">01 / 05</div>
+            <div class="page-index">
+                01 / 05
+            </div>
+
 
             <div class="cat-layout">
+
+
+                <!-- CAT -->
 
                 <div class="cat-illustration">
 
                     <div class="cat-shadow"></div>
 
                     <div class="cat">
+
                         <div class="ear ear-left"></div>
                         <div class="ear ear-right"></div>
 
@@ -116,11 +135,14 @@
                     </div>
 
                     <div class="cat-caption">
-                        SOMEONE IS WATCHING
+                        YES, THE CAT STAYS
                     </div>
 
                 </div>
 
+
+
+                <!-- TEXT -->
 
                 <div class="page-copy">
 
@@ -129,15 +151,25 @@
                     </span>
 
                     <h2>
-                        خب...
+                        اول از همه،
                         <br>
-                        <i>گربه</i>
-                        رو که نمی‌شد حذف کرد.
+                        خودِ <i>آکاری.</i>
                     </h2>
 
                     <p>
-                        چون ظاهراً گربه‌ها در بعضی زندگی‌ها
-                        از آدم‌ها هم نقش پررنگ‌تری دارن.
+                        مهدیه صدات نمی‌کنم.
+                        تقریباً هیچ‌وقت.
+                        <br><br>
+
+                        مگر وقتی چیزی واقعاً مهم باشه،
+                        وقتی حرفی باید جدی گرفته بشه،
+                        یا وقتی احساسات برای چند لحظه
+                        منطق رو کنار بزنن.
+                        <br><br>
+
+                        برای بقیه شاید فقط یک اسم باشه؛
+                        برای من، «مهدیه» همیشه اسمِ
+                        لحظه‌های مهم بود.
                     </p>
 
                     <button class="next-btn" onclick="nextPage()">
@@ -152,15 +184,23 @@
         </section>
 
 
-        <!-- =========================
-             03 — CHOCOLATE MILK
-        ========================== -->
+
+        <!-- =====================================
+             PAGE 03
+             CHOCOLATE MILK
+        ====================================== -->
 
         <section class="page" id="page3">
 
-            <div class="page-index">02 / 05</div>
+            <div class="page-index">
+                02 / 05
+            </div>
+
 
             <div class="chocolate-layout">
+
+
+                <!-- BOTTLE -->
 
                 <div class="bottle-scene">
 
@@ -203,6 +243,9 @@
                 </div>
 
 
+
+                <!-- TEXT -->
+
                 <div class="page-copy chocolate-copy">
 
                     <span class="eyebrow">
@@ -210,19 +253,29 @@
                     </span>
 
                     <h2>
-                        شیرکاکائو.
+                        بعدش،
                         <br>
-                        چون بعضی چیزا
-                        <i>دلیل نمی‌خوان.</i>
+                        یک <i>شیرکاکائو.</i>
                     </h2>
 
                     <p>
-                        یه چیز ساده برای یه روز ساده،
-                        البته با یک مناسبت نسبتاً مهم.
+                        برای کسی که احتمالاً
+                        اگر قرار باشه بین یک سخنرانی طولانی
+                        و یک شیرکاکائو انتخاب کنه،
+                        حداقل اولی رو بررسی می‌کنه.
+                        <br><br>
+
+                        منطق چیز خوبیه.
+                        <br><br>
+
+                        ولی بعضی روزها،
+                        آدم فقط باید بشینه،
+                        بخنده،
+                        و شیرکاکائوش رو بخوره.
                     </p>
 
                     <button class="next-btn" onclick="nextPage()">
-                        ادامه
+                        بریم سراغ بعدی
                         <span>←</span>
                     </button>
 
@@ -233,15 +286,23 @@
         </section>
 
 
-        <!-- =========================
-             04 — FLOWERS
-        ========================== -->
+
+        <!-- =====================================
+             PAGE 04
+             FLOWERS
+        ====================================== -->
 
         <section class="page" id="page4">
 
-            <div class="page-index">03 / 05</div>
+            <div class="page-index">
+                03 / 05
+            </div>
+
 
             <div class="flower-layout">
+
+
+                <!-- TEXT -->
 
                 <div class="flower-copy page-copy">
 
@@ -250,16 +311,34 @@
                     </span>
 
                     <h2>
-                        چند تا گل
+                        برای مهربونی‌ای
                         <br>
-                        برای یک آدم
-                        <i>خاص.</i>
+                        که همیشه <i>دیده نمی‌شه.</i>
                     </h2>
 
                     <p>
-                        نه برای اینکه گل همیشه نماد چیز خاصی باشه.
-                        فقط چون بعضی آدم‌ها باید یک گوشه از روزشون
-                        یه چیز قشنگ داشته باشن.
+                        تو همیشه منطقی‌ترین آدمِ اتاق بودی.
+                        <br><br>
+
+                        تا جایی که می‌شد،
+                        احساسات رو از تصمیم‌هات کنار می‌گذاشتی.
+                        <br><br>
+
+                        اما عجیب‌ترین قسمتت همین بود:
+                        وقتی کسی واقعاً برات مهم می‌شد،
+                        دیگه هیچ‌کدوم از اون حساب‌وکتاب‌ها
+                        مثل قبل کار نمی‌کردن.
+                        <br><br>
+
+                        مهربون بودی.
+                        زودرنج بودی.
+                        و برای آدم‌هایی که دوستشون داشتی،
+                        بیشتر از چیزی که نشون می‌دادی
+                        ارزش قائل بودی.
+                        <br><br>
+
+                        فکر کنم همین تضاد،
+                        یکی از قشنگ‌ترین چیزهای تو بود.
                     </p>
 
                     <button class="next-btn" onclick="nextPage()">
@@ -269,6 +348,9 @@
 
                 </div>
 
+
+
+                <!-- FLOWERS -->
 
                 <div class="flower-garden">
 
@@ -312,9 +394,11 @@
         </section>
 
 
-        <!-- =========================
-             05 — WRITING
-        ========================== -->
+
+        <!-- =====================================
+             PAGE 05
+             WRITING / MEMORY
+        ====================================== -->
 
         <section class="page paper-page" id="page5">
 
@@ -322,12 +406,21 @@
                 04 / 05
             </div>
 
+
             <div class="paper">
 
                 <div class="paper-header">
-                    <span>20 / 08</span>
-                    <span>ONE PAGE ONLY</span>
+
+                    <span>
+                        FOR AKARI
+                    </span>
+
+                    <span>
+                        ONE PAGE ONLY
+                    </span>
+
                 </div>
+
 
                 <div class="paper-inner">
 
@@ -335,37 +428,84 @@
                         برای کسی که می‌نویسه
                     </span>
 
+
                     <h2>
-                        بعضی حرف‌ها
+                        و یک صفحه،
                         <br>
-                        باید جایی
-                        <i>نوشته بشن.</i>
+                        برای چیزی که <i>تمام شد.</i>
                     </h2>
 
-                    <p>
-                        شاید آدم همیشه نتونه دقیقاً بگه
-                        یک نفر چقدر براش مهم بوده.
-                    </p>
 
                     <p>
-                        ولی می‌تونه یک روز،
-                        یک صفحه،
-                        یا حتی چند کلمه رو
-                        برای اون آدم کنار بذاره.
+                        ما همیشه یک جور عجیبی
+                        مثل سگ و گربه به هم می‌پریدیم.
                     </p>
+
+
+                    <p>
+                        ولی عجیب‌تر این بود که
+                        خیلی از شب‌ها هم تا صبح می‌خندیدیم،
+                        با ذوق برای هم از روزهامون می‌گفتیم،
+                        و چیزهایی رو تعریف می‌کردیم
+                        که شاید برای هیچ‌کس دیگه‌ای
+                        تعریف نمی‌کردیم.
+                    </p>
+
+
+                    <p>
+                        قهر کردیم.
+                        آشتی کردیم.
+                        دوباره بحث کردیم.
+                        دوباره خندیدیم.
+                    </p>
+
+
+                    <p>
+                        تا این بار،
+                        هیچ‌کدوم کوتاه نیومدیم.
+                        <br>
+                        و تمام شد.
+                    </p>
+
+
+                    <p>
+                        شاید واقعاً تمام شده باشد.
+                        من نمی‌دونم.
+                    </p>
+
+
+                    <p>
+                        ولی اگر چیزی از تو یاد گرفته باشم،
+                        این بوده که هر آدمی،
+                        و هر رابطه‌ای،
+                        در هر شکلی،
+                        یک پایانی دارد.
+                    </p>
+
+
+                    <p>
+                        و پایان،
+                        همیشه به این معنی نیست
+                        که چیزی که قبلش بوده،
+                        بی‌ارزش بوده.
+                    </p>
+
 
                     <div class="paper-line"></div>
 
+
                     <p class="small-paper-text">
-                        این صفحه برای توئه.
-                        نه بیشتر، نه کمتر.
+                        برای همین،
+                        این دوری دلیل نمی‌شد تولدت رو تبریک نگم.
                     </p>
 
+
                     <button class="paper-btn" onclick="nextPage()">
-                        صفحه آخر
+                        آخرین صفحه
                     </button>
 
                 </div>
+
 
                 <div class="paper-mark">
                     ✦
@@ -376,20 +516,25 @@
         </section>
 
 
-        <!-- =========================
-             06 — FINAL
-        ========================== -->
+
+        <!-- =====================================
+             PAGE 06
+             FINAL
+        ====================================== -->
 
         <section class="page final-page" id="page6">
 
             <div class="final-orbit orbit-one"></div>
+
             <div class="final-orbit orbit-two"></div>
+
 
             <div class="final-content">
 
                 <span class="final-label">
-                    SAME DAY · DIFFERENT STORIES
+                    SAME BEGINNING · DIFFERENT DESTINATIONS
                 </span>
+
 
                 <h1>
                     تولدت
@@ -397,19 +542,30 @@
                     <i>مبارک.</i>
                 </h1>
 
+
                 <div class="final-divider"></div>
 
+
                 <div class="final-gift">
-                    خدا بود.
+                    یک شروع مشترک،
+                    <br>
+                    برای دو مسیر متفاوت.
                 </div>
 
+
                 <p class="final-note">
-                    برای یک آدم خاص،
+                    برای آکاری،
                     <br>
-                    از یک تاریخ مشترک.
+                    در روزی که هر دومون
+                    <br>
+                    از یک نقطه شروع کردیم.
                 </p>
 
-                <button class="restart-btn" onclick="restart()">
+
+                <button
+                    class="restart-btn"
+                    onclick="restart()"
+                    aria-label="بازگشت به ابتدا">
                     ↻
                 </button>
 
@@ -420,9 +576,10 @@
     </main>
 
 
-    <!-- =========================
+
+    <!-- =====================================
          NAVIGATION
-    ========================== -->
+    ====================================== -->
 
     <div class="navigation">
 
@@ -441,7 +598,9 @@
     </div>
 
 
+
     <script src="script.js"></script>
 
 </body>
-    </html>
+
+</html>
