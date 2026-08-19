@@ -9,67 +9,65 @@
         content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     >
 
-    <meta name="theme-color" content="#080908">
+    <meta
+        name="theme-color"
+        content="#080908"
+    >
+
+    <meta
+        name="description"
+        content="یک آرشیو کوچک برای آکاری"
+    >
 
     <title>برای آکاری</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 </head>
 
 
 <body>
 
-    <!--
-        =====================================
-        AKARI — PERSONAL ARCHIVE
-        =====================================
-    -->
-
+    <!-- =====================================================
+         BACKGROUND
+         ===================================================== -->
 
     <div class="site-noise"></div>
-
-
-    <!-- BACKGROUND ATMOSPHERE -->
 
     <div class="ambient ambient-wine"></div>
     <div class="ambient ambient-green"></div>
 
 
+    <!-- =====================================================
+         APP
+         ===================================================== -->
+
     <main id="app">
 
 
-        <!-- =================================
-             PAGE 00 — INTRO
-        ================================== -->
+        <!-- =================================================
+             PAGE 0 — INTRO
+             ================================================= -->
 
         <section
+            id="page-intro"
             class="page page-intro active"
-            id="page-0"
-            aria-label="شروع"
         >
 
             <div class="intro-wrap">
 
+                <div class="intro-meta">
 
-                <!-- TOP META -->
+                    <span>ARCHIVE / 01</span>
 
-                <header class="intro-meta">
+                    <span>AKARI</span>
 
-                    <span class="meta-left">
-                        PERSONAL ARCHIVE
-                    </span>
+                </div>
 
-                    <span class="meta-right">
-                        01
-                    </span>
-
-                </header>
-
-
-                <!-- MAIN ART -->
 
                 <div class="archive-object">
-
 
                     <div class="object-frame">
 
@@ -80,28 +78,25 @@
 
 
                         <div class="object-topline">
-                            AKARI / 011
+                            PRIVATE ARCHIVE
                         </div>
 
 
-                        <!-- MINIMAL CAT -->
+                        <!-- گربه‌ی مینیمال -->
 
-                        <div
-                            class="cat"
-                            aria-hidden="true"
-                        >
+                        <div class="cat">
 
-                            <span class="cat-ear cat-ear-left"></span>
-                            <span class="cat-ear cat-ear-right"></span>
+                            <div class="cat-ear cat-ear-left"></div>
+                            <div class="cat-ear cat-ear-right"></div>
 
-                            <span class="cat-face">
+                            <div class="cat-face">
 
-                                <i class="cat-eye cat-eye-left"></i>
-                                <i class="cat-eye cat-eye-right"></i>
+                                <span class="cat-eye cat-eye-left"></span>
+                                <span class="cat-eye cat-eye-right"></span>
 
-                                <i class="cat-nose"></i>
+                                <span class="cat-nose"></span>
 
-                            </span>
+                            </div>
 
                         </div>
 
@@ -109,80 +104,68 @@
                         <div class="object-caption">
 
                             <span>
-                                THINGS WORTH KEEPING
+                                یک آرشیو کوچک برای یک آدم خاص
                             </span>
 
                             <strong>
-                                بعضی چیزها
-                                <br>
-                                گم نمی‌شوند.
+                                آکاری
                             </strong>
 
                         </div>
 
                     </div>
 
-
                 </div>
 
-
-                <!-- INTRO TEXT -->
 
                 <div class="intro-copy">
 
                     <span class="section-label">
-                        FOR AKARI
+                        برای مهدیه
                     </span>
 
-
                     <h1>
-                        برای
-                        <em>آکاری</em>
+                        یک چیزی<br>
+                        <em>برای تو.</em>
                     </h1>
 
-
                     <p>
-                        یک آرشیو کوچک از چیزهایی
-                        <br>
-                        که هنوز ارزش یادآوری دارند.
+                        قرار نیست چیز عجیبی باشد.
+                        فقط چند تکه از چیزهایی که
+                        ارزش نگه داشتن داشتند.
                     </p>
+
+
+                    <button
+                        id="startBtn"
+                        class="start-button"
+                        type="button"
+                    >
+
+                        <span>
+                            بزن بریم
+                        </span>
+
+                        <b>
+                            ↗
+                        </b>
+
+                    </button>
 
                 </div>
 
 
-                <!-- START -->
-
-                <button
-                    class="start-button"
-                    id="startBtn"
-                    type="button"
-                >
+                <div class="intro-footer">
 
                     <span>
-                        بزن بریم
-                    </span>
-
-                    <b aria-hidden="true">
-                        ↗
-                    </b>
-
-                </button>
-
-
-                <!-- FOOTER -->
-
-                <footer class="intro-footer">
-
-                    <span>
-                        NOT A LOVE STORY
+                        made with memory
                     </span>
 
                     <span>
-                        JUST A MEMORY
+                        2026
                     </span>
 
-                </footer>
-
+                </div>
 
             </div>
 
@@ -190,23 +173,21 @@
 
 
 
-        <!-- =================================
-             PAGE 01 — NAME
-        ================================== -->
+        <!-- =================================================
+             PAGE 1 — NAME GAME
+             ================================================= -->
 
         <section
+            id="page-name"
             class="page"
-            id="page-1"
-            aria-label="اسم"
         >
 
             <div class="game-page">
 
-
                 <div class="page-meta">
 
                     <span>
-                        FILE 01
+                        01 / 06
                     </span>
 
                     <span>
@@ -219,27 +200,24 @@
                 <div class="game-heading">
 
                     <span class="section-label">
-                        SOME NAMES ARE DIFFERENT
+                        اولین تکه
                     </span>
 
-
                     <h2>
-                        یک اسم را
-                        <br>
-                        <em>پیدا کن.</em>
+                        کدام اسم<br>
+                        <em>درست است؟</em>
                     </h2>
 
-
                     <p>
-                        اسمی که همیشه اسم نبود.
+                        بعضی اسم‌ها فقط اسم نیستند.
                     </p>
 
                 </div>
 
 
                 <div
-                    class="name-game"
                     id="nameGame"
+                    class="name-game"
                 >
 
                     <button type="button">
@@ -247,15 +225,7 @@
                     </button>
 
                     <button type="button">
-                        مریم
-                    </button>
-
-                    <button type="button">
-                        نیلوفر
-                    </button>
-
-                    <button type="button">
-                        هلیا
+                        نگار
                     </button>
 
                     <button type="button">
@@ -263,26 +233,16 @@
                     </button>
 
                     <button type="button">
-                        مهسا
-                    </button>
-
-                    <button type="button">
-                        نازنین
-                    </button>
-
-                    <button type="button">
-                        الهام
+                        آوا
                     </button>
 
                 </div>
 
 
                 <div
-                    class="game-response"
                     id="nameResponse"
-                    aria-live="polite"
+                    class="game-response"
                 ></div>
-
 
             </div>
 
@@ -290,27 +250,25 @@
 
 
 
-        <!-- =================================
-             PAGE 02 — NIGHT
-        ================================== -->
+        <!-- =================================================
+             PAGE 2 — NIGHT GAME
+             ================================================= -->
 
         <section
+            id="page-night"
             class="page"
-            id="page-2"
-            aria-label="شب"
         >
 
             <div class="game-page">
 
-
                 <div class="page-meta">
 
                     <span>
-                        FILE 02
+                        02 / 06
                     </span>
 
                     <span>
-                        02:17 → MORNING
+                        NIGHT
                     </span>
 
                 </div>
@@ -319,28 +277,24 @@
                 <div class="game-heading">
 
                     <span class="section-label">
-                        SOME NIGHTS WERE LONG
+                        بعضی شب‌ها
                     </span>
 
-
                     <h2>
-                        چراغ را
-                        <br>
-                        <em>روشن نگه دار.</em>
+                        چراغ را<br>
+                        <em>روشن کن.</em>
                     </h2>
 
-
                     <p>
-                        هر بار که لمسش کنی،
-                        یک ساعت جلو می‌رود.
+                        بعضی شب‌ها عجیب طولانی بودند.
                     </p>
 
                 </div>
 
 
                 <div
-                    class="night-game"
                     id="nightGame"
+                    class="night-game"
                 >
 
                     <div class="night-window">
@@ -355,7 +309,12 @@
                     </div>
 
 
-                    <div class="lamp">
+                    <div
+                        class="lamp"
+                        role="button"
+                        tabindex="0"
+                        aria-label="چراغ را روشن کن"
+                    >
 
                         <div class="lamp-light"></div>
 
@@ -368,26 +327,25 @@
                     </div>
 
 
-                    <div class="night-clock">
-                        <span id="nightClock">
-                            02:17
-                        </span>
-                    </div>
+                    <span
+                        id="nightClock"
+                        class="night-clock"
+                    >
+                        02:17
+                    </span>
 
 
                     <span class="touch-note">
-                        لمس کن
+                        لمسش کن
                     </span>
 
                 </div>
 
 
                 <div
-                    class="game-response"
                     id="nightResponse"
-                    aria-live="polite"
+                    class="game-response"
                 ></div>
-
 
             </div>
 
@@ -395,23 +353,21 @@
 
 
 
-        <!-- =================================
-             PAGE 03 — COCOA
-        ================================== -->
+        <!-- =================================================
+             PAGE 3 — COCOA GAME
+             ================================================= -->
 
         <section
+            id="page-cocoa"
             class="page"
-            id="page-3"
-            aria-label="شیر کاکائو"
         >
 
             <div class="game-page">
 
-
                 <div class="page-meta">
 
                     <span>
-                        FILE 03
+                        03 / 06
                     </span>
 
                     <span>
@@ -424,19 +380,16 @@
                 <div class="game-heading">
 
                     <span class="section-label">
-                        A VERY SERIOUS RECIPE
+                        دستور مخصوص
                     </span>
 
-
                     <h2>
-                        دستور یک
-                        <br>
-                        <em>شب خوب.</em>
+                        شیرکاکائو<br>
+                        <em>درست کن.</em>
                     </h2>
 
-
                     <p>
-                        سه چیز درست را انتخاب کن.
+                        یک لیوان خوب، چند چیز ساده لازم دارد.
                     </p>
 
                 </div>
@@ -448,20 +401,20 @@
                     <div class="cocoa-glass">
 
                         <div
-                            class="cocoa-liquid"
                             id="cocoaLiquid"
+                            class="cocoa-liquid"
                         ></div>
 
                         <span>
-                            AKARI
+                            COCOA
                         </span>
 
                     </div>
 
 
                     <div
-                        class="cocoa-ingredients"
                         id="cocoaIngredients"
+                        class="cocoa-ingredients"
                     >
 
                         <button
@@ -494,16 +447,13 @@
 
                     </div>
 
-
                 </div>
 
 
                 <div
-                    class="game-response"
                     id="cocoaResponse"
-                    aria-live="polite"
+                    class="game-response"
                 ></div>
-
 
             </div>
 
@@ -511,23 +461,21 @@
 
 
 
-        <!-- =================================
-             PAGE 04 — FLOWER
-        ================================== -->
+        <!-- =================================================
+             PAGE 4 — FLOWER GAME
+             ================================================= -->
 
         <section
+            id="page-flower"
             class="page"
-            id="page-4"
-            aria-label="گل"
         >
 
             <div class="game-page">
 
-
                 <div class="page-meta">
 
                     <span>
-                        FILE 04
+                        04 / 06
                     </span>
 
                     <span>
@@ -540,33 +488,28 @@
                 <div class="game-heading">
 
                     <span class="section-label">
-                        LIGHTER IS NOT LESS
+                        کمی سبک‌تر
                     </span>
 
-
                     <h2>
-                        چیزهایی که
-                        <br>
-                        <em>لازم نیستند.</em>
+                        گل را<br>
+                        <em>آزاد کن.</em>
                     </h2>
 
-
                     <p>
-                        از روی گل بردارشان.
+                        هر چیزی که لازم نیست، قرار نیست تا ابد حمل شود.
                     </p>
 
                 </div>
 
 
                 <div
-                    class="flower-game"
                     id="flowerGame"
+                    class="flower-game"
                 >
 
 
                     <div class="flower">
-
-                        <div class="flower-stem"></div>
 
                         <div class="flower-head">
 
@@ -579,35 +522,37 @@
 
                         </div>
 
+                        <div class="flower-stem"></div>
+
                     </div>
 
 
                     <button
-                        class="weight weight-pride"
                         type="button"
+                        class="weight weight-pride"
                     >
                         غرور
                     </button>
 
                     <button
-                        class="weight weight-hurt"
                         type="button"
+                        class="weight weight-hurt"
                     >
                         دلخوری
                     </button>
 
                     <button
-                        class="weight weight-wait"
                         type="button"
+                        class="weight weight-wait"
                     >
                         انتظار
                     </button>
 
                     <button
-                        class="weight weight-anger"
                         type="button"
+                        class="weight weight-anger"
                     >
-                        قهر
+                        عصبانیت
                     </button>
 
 
@@ -615,11 +560,9 @@
 
 
                 <div
-                    class="game-response"
                     id="flowerResponse"
-                    aria-live="polite"
+                    class="game-response"
                 ></div>
-
 
             </div>
 
@@ -627,23 +570,21 @@
 
 
 
-        <!-- =================================
-             PAGE 05 — DOG & CAT
-        ================================== -->
+        <!-- =================================================
+             PAGE 5 — CAT & DOG
+             ================================================= -->
 
         <section
+            id="page-animals"
             class="page"
-            id="page-5"
-            aria-label="سگ و گربه"
         >
 
             <div class="game-page">
 
-
                 <div class="page-meta">
 
                     <span>
-                        FILE 05
+                        05 / 06
                     </span>
 
                     <span>
@@ -656,41 +597,38 @@
                 <div class="game-heading">
 
                     <span class="section-label">
-                        AS USUAL
+                        آشناست؟
                     </span>
 
-
                     <h2>
-                        مثل سگ و گربه.
+                        سگ و گربه<br>
+                        <em>باز هم.</em>
                     </h2>
 
-
                     <p>
-                        این دو تا را به هم نزدیک کن.
+                        بعضی رابطه‌ها عجیب‌اند.
+                        بیشتر از آنچه باید.
                     </p>
 
                 </div>
 
 
                 <div
-                    class="animal-game"
                     id="animalGame"
+                    class="animal-game"
                 >
 
-
                     <div
-                        class="animal dog"
                         id="dog"
-                        aria-label="سگ"
+                        class="animal dog"
                     >
 
-                        <span class="dog-ear"></span>
+                        <div class="dog-ear"></div>
 
                         <div class="animal-head">
 
                             <i></i>
                             <i></i>
-
                             <b></b>
 
                         </div>
@@ -699,19 +637,17 @@
 
 
                     <div
-                        class="animal cat-animal"
                         id="cat"
-                        aria-label="گربه"
+                        class="animal cat-animal"
                     >
 
-                        <span class="cat-point left"></span>
-                        <span class="cat-point right"></span>
+                        <div class="cat-point left"></div>
+                        <div class="cat-point right"></div>
 
                         <div class="animal-head">
 
                             <i></i>
                             <i></i>
-
                             <b></b>
 
                         </div>
@@ -723,18 +659,16 @@
 
 
                     <span class="animal-hint">
-                        لمس کن
+                        چند بار لمسش کن
                     </span>
 
                 </div>
 
 
                 <div
-                    class="game-response"
                     id="animalResponse"
-                    aria-live="polite"
+                    class="game-response"
                 ></div>
-
 
             </div>
 
@@ -742,23 +676,21 @@
 
 
 
-        <!-- =================================
-             PAGE 06 — WRITING
-        ================================== -->
+        <!-- =================================================
+             PAGE 6 — WRITING
+             ================================================= -->
 
         <section
+            id="page-writing"
             class="page"
-            id="page-6"
-            aria-label="نوشتن"
         >
 
             <div class="game-page">
 
-
                 <div class="page-meta">
 
                     <span>
-                        FILE 06
+                        06 / 06
                     </span>
 
                     <span>
@@ -771,33 +703,25 @@
                 <div class="game-heading">
 
                     <span class="section-label">
-                        FOR SOMEONE WHO WRITES
+                        برای کسی که می‌نویسد
                     </span>
 
-
                     <h2>
-                        سه کلمه
-                        <br>
-                        <em>انتخاب کن.</em>
+                        سه کلمه<br>
+                        <em>بردار.</em>
                     </h2>
 
-
                     <p>
-                        بگذار آخرین جمله را
-                        خودت بسازی.
+                        نویسنده‌ها گاهی با سه کلمه هم قصه می‌سازند.
                     </p>
 
                 </div>
 
 
                 <div
-                    class="word-game"
                     id="wordGame"
+                    class="word-game"
                 >
-
-                    <button type="button">
-                        خاطره
-                    </button>
 
                     <button type="button">
                         شب
@@ -808,45 +732,47 @@
                     </button>
 
                     <button type="button">
-                        آدم
+                        خاطره
                     </button>
 
                     <button type="button">
-                        پایان
+                        باران
                     </button>
 
                     <button type="button">
-                        ماندن
+                        گربه
                     </button>
 
                     <button type="button">
-                        آکاری
+                        رفاقت
+                    </button>
+
+                    <button type="button">
+                        دوری
+                    </button>
+
+                    <button type="button">
+                        فردا
                     </button>
 
                 </div>
 
 
                 <div
-                    class="sentence"
                     id="sentence"
+                    class="sentence"
                 >
-
-                    <span>
-                        هنوز چیزی نوشته نشده.
-                    </span>
-
+                    سه کلمه را انتخاب کن.
                 </div>
 
 
                 <button
-                    class="last-drawer-button hidden"
                     id="lastDrawerBtn"
+                    class="last-drawer-button hidden"
                     type="button"
                 >
-                    آخرین کشو
-                    <b>↗</b>
+                    آخرین کشو ↗
                 </button>
-
 
             </div>
 
@@ -854,44 +780,41 @@
 
 
 
-        <!-- =================================
-             PAGE 07 — FINAL
-        ================================== -->
+        <!-- =================================================
+             PAGE 7 — FINAL
+             ================================================= -->
 
         <section
+            id="page-final"
             class="page page-final"
-            id="page-7"
-            aria-label="پایان"
         >
 
             <div class="final-wrap">
 
 
-                <span class="section-label">
-                    THE LAST DRAWER
-                </span>
-
+                <!-- کشوی آخر -->
 
                 <div
-                    class="drawer"
                     id="drawer"
+                    class="drawer"
                 >
 
-                    <div class="drawer-top">
-                        ARCHIVE / AKARI
-                    </div>
+                    <span class="drawer-top">
+                        FINAL ARCHIVE
+                    </span>
 
 
                     <div class="drawer-question">
-                        <span>
-                            یک چیز
-                            <br>
-                            هنوز باقی مانده.
-                        </span>
 
                         <strong>
-                            ?
+                            ؟
                         </strong>
+
+                        <span>
+                            آخرین چیزی که مانده،
+                            یک تبریک ساده است.
+                        </span>
+
                     </div>
 
 
@@ -905,16 +828,44 @@
                 </div>
 
 
-                <!-- BIRTHDAY MESSAGE -->
+                <!-- پیام نهایی -->
 
                 <div
-                    class="final-message hidden"
                     id="finalMessage"
+                    class="final-message hidden"
                 >
 
                     <span class="final-small">
-                        برای آکاری
+                        برای مهدیه
                     </span>
 
 
-                    <h1
+                    <h1>
+                        تولدت<br>
+                        <em>مبارک.</em>
+                    </h1>
+
+
+                    <div class="final-line"></div>
+
+
+                    <p>
+                        با همه‌ی دوری‌ها و با همه‌ی چیزهایی
+                        که بین ما عوض شد،
+                        هنوز فکر می‌کنم بعضی آدم‌ها
+                        ارزش تبریک گفتن دارند.
+                    </p>
+
+
+                    <p class="final-secondary">
+                        نه برای برگرداندن چیزی،
+                        نه برای ادامه دادن چیزی.
+                        فقط چون یک زمانی
+                        بخش مهمی از روزهای من بودی.
+                    </p>
+
+
+                    <span class="final-end">
+                        امیدوارم امسال
+                        چیزهای خوبی برای نوشتن داشته باشی.
+                    <
