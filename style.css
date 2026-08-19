@@ -1,0 +1,1074 @@
+:root {
+    --black: #080908;
+    --dark-green: #111812;
+    --green: #183326;
+
+    --burgundy: #651f2d;
+    --burgundy-light: #8b3043;
+
+    --cream: #d8c7a5;
+    --white: #f1ebdd;
+
+    --transition: 850ms cubic-bezier(.77, 0, .18, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background: var(--black);
+    color: var(--white);
+
+    font-family: "Vazirmatn", sans-serif;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.noise {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: .055;
+
+    z-index: 20;
+
+    background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+}
+
+.glow {
+    position: fixed;
+
+    width: 500px;
+    height: 500px;
+
+    border-radius: 50%;
+
+    filter: blur(120px);
+
+    opacity: .13;
+
+    pointer-events: none;
+}
+
+.glow-one {
+    background: var(--burgundy);
+    top: -250px;
+    right: -180px;
+}
+
+.glow-two {
+    background: var(--green);
+    bottom: -300px;
+    left: -200px;
+}
+
+
+/* =========================
+   SCREENS
+========================= */
+
+#app {
+    width: 100%;
+    height: 100%;
+}
+
+.screen {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 8vh 8vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(35px) scale(.98);
+
+    transition:
+        opacity var(--transition),
+        transform var(--transition),
+        visibility var(--transition);
+
+    overflow: hidden;
+}
+
+.screen.active {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(0) scale(1);
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+#screen-1 {
+    flex-direction: column;
+    text-align: center;
+}
+
+.intro-decoration {
+    display: flex;
+    gap: 9px;
+
+    margin-bottom: 28px;
+}
+
+.intro-decoration span {
+    width: 5px;
+    height: 5px;
+
+    background: var(--burgundy-light);
+
+    transform: rotate(45deg);
+}
+
+.eyebrow,
+.final-small {
+    font-family: "Playfair Display", serif;
+
+    letter-spacing: 4px;
+
+    font-size: 10px;
+
+    opacity: .6;
+}
+
+#screen-1 h1 {
+    margin: 25px 0;
+
+    font-size: clamp(55px, 9vw, 115px);
+
+    line-height: .95;
+
+    font-weight: 500;
+
+    letter-spacing: -4px;
+}
+
+h1 em,
+h2 em {
+    font-family: "Playfair Display", serif;
+
+    font-weight: 400;
+
+    color: var(--cream);
+}
+
+.intro-text {
+    max-width: 500px;
+
+    line-height: 2;
+
+    color: rgba(241,235,221,.65);
+
+    font-size: 14px;
+}
+
+.main-button {
+    margin-top: 42px;
+
+    padding: 15px 28px;
+
+    border: 1px solid rgba(216,199,165,.25);
+
+    background: rgba(101,31,45,.25);
+
+    color: var(--white);
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.main-button span {
+    margin-right: 12px;
+}
+
+.main-button:hover {
+    background: var(--burgundy);
+
+    transform: translateY(-3px);
+}
+
+.date-mark {
+    position: absolute;
+
+    bottom: 45px;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 9px;
+
+    line-height: 1.8;
+
+    letter-spacing: 3px;
+
+    opacity: .25;
+
+    direction: ltr;
+}
+
+
+/* =========================
+   GENERAL
+========================= */
+
+.section-number {
+    position: absolute;
+
+    top: 45px;
+    right: 8vw;
+
+    color: var(--burgundy-light);
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+}
+
+.content-grid {
+    width: min(1050px, 100%);
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 8vw;
+
+    align-items: center;
+}
+
+.visual-card {
+    position: relative;
+
+    aspect-ratio: 4 / 5;
+
+    overflow: hidden;
+
+    background: var(--dark-green);
+
+    box-shadow: 20px 30px 80px rgba(0,0,0,.35);
+}
+
+.visual-card img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    filter: saturate(.7) contrast(1.05);
+
+    transition: transform 1s;
+}
+
+.visual-card:hover img {
+    transform: scale(1.04);
+}
+
+.card-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 2;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent 55%,
+            rgba(8,9,8,.65)
+        );
+}
+
+.image-label {
+    position: absolute;
+
+    bottom: 20px;
+    left: 20px;
+
+    z-index: 3;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    direction: ltr;
+
+    opacity: .75;
+}
+
+.text-content {
+    max-width: 470px;
+}
+
+.small-title {
+    color: var(--burgundy-light);
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+}
+
+.text-content h2,
+.center-copy h2,
+.flower-copy h2,
+.paper h2 {
+    margin: 22px 0;
+
+    font-size: clamp(38px, 5vw, 65px);
+
+    line-height: 1.15;
+
+    font-weight: 500;
+}
+
+.text-content p,
+.center-copy p,
+.flower-copy p,
+.paper p {
+    color: rgba(241,235,221,.62);
+
+    line-height: 2.1;
+
+    font-size: 14px;
+
+    max-width: 470px;
+}
+
+.text-button {
+    margin-top: 35px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--cream);
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    padding: 8px 0;
+
+    transition: .3s;
+}
+
+.text-button span {
+    display: inline-block;
+
+    margin-right: 14px;
+
+    transition: .3s;
+}
+
+.text-button:hover span {
+    transform: translateX(-7px);
+}
+
+
+/* =========================
+   CHOCOLATE
+========================= */
+
+#screen-3 {
+    flex-direction: column;
+}
+
+.chocolate-scene {
+    position: absolute;
+
+    left: 10%;
+
+    bottom: 12%;
+
+    width: 230px;
+    height: 430px;
+}
+
+.chocolate-bottle {
+    position: absolute;
+
+    bottom: 30px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 160px;
+    height: 350px;
+
+    border-radius: 38px 38px 25px 25px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #321c16,
+            #633d2d 45%,
+            #291713
+        );
+
+    box-shadow:
+        20px 30px 50px rgba(0,0,0,.5);
+
+    animation: floatBottle 4s ease-in-out infinite;
+}
+
+.bottle-cap {
+    position: absolute;
+
+    width: 70px;
+    height: 35px;
+
+    left: 45px;
+    top: -28px;
+
+    border-radius: 8px 8px 3px 3px;
+
+    background: var(--burgundy);
+}
+
+.bottle-label {
+    position: absolute;
+
+    left: 15px;
+    right: 15px;
+
+    top: 105px;
+
+    height: 145px;
+
+    background: var(--cream);
+
+    color: var(--black);
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+.bottle-label small {
+    font-size: 7px;
+
+    letter-spacing: 2px;
+}
+
+.bottle-label strong {
+    font-family: "Playfair Display", serif;
+
+    font-size: 27px;
+}
+
+.bottle-label span {
+    font-size: 10px;
+
+    letter-spacing: 4px;
+}
+
+.chocolate-shadow {
+    position: absolute;
+
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 20px;
+
+    border-radius: 50%;
+
+    background: #000;
+
+    filter: blur(10px);
+
+    opacity: .6;
+}
+
+.center-copy {
+    position: relative;
+
+    text-align: center;
+
+    z-index: 2;
+}
+
+.center-copy p {
+    margin: auto;
+}
+
+@keyframes floatBottle {
+    0%,100% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(-12px);
+    }
+}
+
+
+/* =========================
+   FLOWERS
+========================= */
+
+.flower-layout {
+    width: min(1000px, 100%);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 8vw;
+}
+
+.flower-copy {
+    max-width: 500px;
+}
+
+.flower-art {
+    position: relative;
+
+    width: 350px;
+    height: 500px;
+}
+
+.stem {
+    position: absolute;
+
+    width: 3px;
+
+    background: var(--green);
+
+    transform-origin: bottom;
+}
+
+.stem-one {
+    height: 370px;
+
+    left: 45%;
+
+    bottom: 20px;
+
+    transform: rotate(-8deg);
+}
+
+.stem-two {
+    height: 300px;
+
+    left: 62%;
+
+    bottom: 20px;
+
+    transform: rotate(13deg);
+}
+
+.flower {
+    position: absolute;
+
+    width: 90px;
+    height: 90px;
+
+    border-radius: 50%;
+}
+
+.flower-one {
+    left: 23%;
+    top: 35px;
+}
+
+.flower-two {
+    left: 50%;
+    top: 125px;
+
+    transform: scale(.7);
+}
+
+.flower span {
+    position: absolute;
+
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50% 50% 45% 45%;
+
+    background: var(--burgundy);
+
+    transform-origin: 45px 45px;
+}
+
+.flower span:nth-child(1) {
+    transform: rotate(0deg);
+}
+
+.flower span:nth-child(2) {
+    transform: rotate(72deg);
+}
+
+.flower span:nth-child(3) {
+    transform: rotate(144deg);
+}
+
+.flower span:nth-child(4) {
+    transform: rotate(216deg);
+}
+
+.flower span:nth-child(5) {
+    transform: rotate(288deg);
+}
+
+.flower::after {
+    content: "";
+
+    position: absolute;
+
+    width: 18px;
+    height: 18px;
+
+    border-radius: 50%;
+
+    background: var(--cream);
+
+    left: 36px;
+    top: 36px;
+
+    z-index: 2;
+}
+
+
+/* =========================
+   PAPER
+========================= */
+
+.paper-screen {
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(101,31,45,.12),
+            transparent 60%
+        );
+}
+
+.paper {
+    position: relative;
+
+    width: min(680px, 90vw);
+
+    min-height: 70vh;
+
+    padding: 50px 60px;
+
+    background: #d8c7a5;
+
+    color: #17130f;
+
+    transform: rotate(-1deg);
+
+    box-shadow: 20px 30px 90px rgba(0,0,0,.5);
+
+    overflow: hidden;
+}
+
+.paper::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    opacity: .12;
+
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            transparent 3px,
+            rgba(0,0,0,.2) 4px
+        );
+}
+
+.paper-top {
+    position: relative;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    opacity: .5;
+
+    direction: ltr;
+}
+
+.paper-content {
+    position: relative;
+
+    margin-top: 80px;
+}
+
+.hand-label {
+    color: var(--burgundy);
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+}
+
+.paper h2 {
+    color: #17130f;
+
+    font-size: clamp(38px, 5vw, 62px);
+}
+
+.paper h2 em {
+    color: var(--burgundy);
+}
+
+.paper p {
+    color: rgba(23,19,15,.7);
+
+    max-width: 500px;
+
+    margin-bottom: 12px;
+}
+
+.paper-button {
+    margin-top: 30px;
+
+    padding: 13px 22px;
+
+    background: var(--burgundy);
+
+    border: 0;
+
+    color: var(--white);
+
+    font-family: inherit;
+
+    cursor: pointer;
+}
+
+.paper-flower {
+    position: absolute;
+
+    left: 30px;
+    bottom: 25px;
+
+    color: var(--burgundy);
+
+    font-size: 50px;
+
+    opacity: .4;
+}
+
+
+/* =========================
+   FINAL
+========================= */
+
+.final-screen {
+    text-align: center;
+}
+
+.final-background {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            rgba(101,31,45,.25),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 20% 80%,
+            rgba(24,51,38,.3),
+            transparent 40%
+        );
+}
+
+.final-content {
+    position: relative;
+
+    z-index: 2;
+}
+
+.final-content h1 {
+    margin: 30px 0;
+
+    font-size: clamp(65px, 12vw, 150px);
+
+    line-height: .9;
+
+    font-weight: 500;
+
+    letter-spacing: -5px;
+}
+
+.final-line {
+    width: 45px;
+    height: 1px;
+
+    background: var(--burgundy-light);
+
+    margin: 35px auto;
+}
+
+.final-message {
+    font-family: "Playfair Display", serif;
+
+    font-size: 22px;
+
+    color: var(--cream);
+}
+
+.signature {
+    margin-top: 25px;
+
+    font-size: 12px;
+
+    line-height: 2;
+
+    color: rgba(241,235,221,.45);
+}
+
+.restart-button {
+    margin-top: 35px;
+
+    background: transparent;
+
+    border: 1px solid rgba(216,199,165,.2);
+
+    color: rgba(241,235,221,.6);
+
+    padding: 10px 18px;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.restart-button:hover {
+    border-color: var(--burgundy-light);
+
+    color: var(--white);
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress {
+    position: fixed;
+
+    bottom: 35px;
+    left: 8vw;
+
+    z-index: 30;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    opacity: .5;
+
+    direction: ltr;
+}
+
+.progress-line {
+    width: 90px;
+    height: 1px;
+
+    background: rgba(241,235,221,.15);
+
+    overflow: hidden;
+}
+
+#progress-bar {
+    width: 16.66%;
+    height: 100%;
+
+    background: var(--burgundy-light);
+
+    transition: .7s;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .screen {
+        padding: 70px 7vw 80px;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+    }
+
+    .visual-card {
+        width: 65vw;
+
+        max-width: 300px;
+
+        margin: 0 auto;
+
+        aspect-ratio: 1 / 1.15;
+    }
+
+    .text-content {
+        text-align: center;
+
+        margin: auto;
+    }
+
+    .text-content h2 {
+        font-size: 39px;
+    }
+
+    .text-content p {
+        font-size: 13px;
+    }
+
+    .chocolate-scene {
+        position: relative;
+
+        left: auto;
+        bottom: auto;
+
+        width: 170px;
+        height: 300px;
+
+        margin-bottom: 15px;
+    }
+
+    .chocolate-bottle {
+        width: 115px;
+        height: 250px;
+    }
+
+    .bottle-cap {
+        width: 50px;
+        height: 27px;
+
+        left: 32px;
+
+        top: -22px;
+    }
+
+    .bottle-label {
+        top: 75px;
+
+        height: 100px;
+    }
+
+    .bottle-label strong {
+        font-size: 20px;
+    }
+
+    .center-copy h2 {
+        font-size: 38px;
+    }
+
+    .flower-layout {
+        flex-direction: column;
+
+        text-align: center;
+
+        gap: 10px;
+    }
+
+    .flower-art {
+        width: 230px;
+        height: 280px;
+
+        transform: scale(.7);
+    }
+
+    .paper {
+        min-height: 72vh;
+
+        padding: 35px 28px;
+    }
+
+    .paper-content {
+        margin-top: 50px;
+    }
+
+    .paper h2 {
+        font-size: 40px;
+    }
+
+    .final-content h1 {
+        font-size: 75px;
+    }
+
+    .progress {
+        left: 50%;
+
+        transform: translateX(-50%);
+    }
+
+    .section-number {
+        top: 25px;
+        right: 7vw;
+    }
+  }
