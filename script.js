@@ -1,120 +1,129 @@
-let currentScreen = 1;
+let currentPage = 1;
 
-const totalScreens = 6;
+const totalPages = 6;
 
-const screens = document.querySelectorAll(".screen");
+const pages = document.querySelectorAll(".page");
 
-const progressBar = document.getElementById("progress-bar");
+const currentPageText =
+    document.getElementById("currentPage");
 
-const progressCurrent =
-    document.querySelector(".progress-current");
-
-
-function updateProgress() {
-
-    const percentage =
-        (currentScreen / totalScreens) * 100;
-
-    progressBar.style.width =
-        `${percentage}%`;
-
-    progressCurrent.textContent =
-        String(currentScreen).padStart(2, "0");
-}
+const navProgress =
+    document.getElementById("navProgress");
 
 
-function showScreen(number) {
+/* =========================================
+   PAGE TRANSITION
+========================================= */
 
-    if (number < 1 || number > totalScreens) {
+function showPage(pageNumber) {
+
+    if (pageNumber < 1 || pageNumber > totalPages) {
         return;
     }
 
-    screens.forEach((screen, index) => {
+    pages.forEach((page, index) => {
 
-        screen.classList.toggle(
+        page.classList.toggle(
             "active",
-            index === number - 1
+            index === pageNumber - 1
         );
 
     });
 
-    currentScreen = number;
+    currentPage = pageNumber;
 
-    updateProgress();
+    updateNavigation();
+
 }
 
 
-function nextScreen() {
+/* =========================================
+   NEXT / PREVIOUS
+========================================= */
 
-    if (currentScreen < totalScreens) {
+function nextPage() {
 
-        showScreen(currentScreen + 1);
-
+    if (currentPage < totalPages) {
+        showPage(currentPage + 1);
     }
 
 }
 
 
-function previousScreen() {
+function previousPage() {
 
-    if (currentScreen > 1) {
-
-        showScreen(currentScreen - 1);
-
+    if (currentPage > 1) {
+        showPage(currentPage - 1);
     }
 
 }
 
 
-function restart() {
+/* =========================================
+   NAVIGATION
+========================================= */
 
-    showScreen(1);
+function updateNavigation() {
+
+    const percentage =
+        (currentPage / totalPages) * 100;
+
+    navProgress.style.width =
+        `${percentage}%`;
+
+    currentPageText.textContent =
+        String(currentPage).padStart(2, "0");
 
 }
 
 
-/* =========================
-   KEYBOARD NAVIGATION
-========================= */
+/* =========================================
+   KEYBOARD
+========================================= */
 
-document.addEventListener("keydown", (event) => {
+document.addEventListener(
+    "keydown",
+    function(event) {
 
-    if (
-        event.key === "ArrowRight" ||
-        event.key === "ArrowDown"
-    ) {
+        if (
+            event.key === "ArrowLeft" ||
+            event.key === "ArrowDown"
+        ) {
 
-        nextScreen();
+            nextPage();
+
+        }
+
+        if (
+            event.key === "ArrowRight" ||
+            event.key === "ArrowUp"
+        ) {
+
+            previousPage();
+
+        }
 
     }
-
-    if (
-        event.key === "ArrowLeft" ||
-        event.key === "ArrowUp"
-    ) {
-
-        previousScreen();
-
-    }
-
-});
+);
 
 
-/* =========================
-   TOUCH SWIPE
-========================= */
+/* =========================================
+   MOBILE SWIPE
+========================================= */
 
 let touchStartX = 0;
-
-let touchEndX = 0;
+let touchStartY = 0;
 
 
 document.addEventListener(
     "touchstart",
-    (event) => {
+    function(event) {
 
         touchStartX =
             event.changedTouches[0].screenX;
+
+        touchStartY =
+            event.changedTouches[0].screenY;
 
     },
     { passive: true }
@@ -123,42 +132,69 @@ document.addEventListener(
 
 document.addEventListener(
     "touchend",
-    (event) => {
+    function(event) {
 
-        touchEndX =
+        const touchEndX =
             event.changedTouches[0].screenX;
 
-        handleSwipe();
+        const touchEndY =
+            event.changedTouches[0].screenY;
+
+        const deltaX =
+            touchStartX - touchEndX;
+
+        const deltaY =
+            touchStartY - touchEndY;
+
+
+        /* اگر حرکت بیشتر عمودی بود،
+           آن را نادیده می‌گیریم */
+
+        if (
+            Math.abs(deltaY) >
+            Math.abs(deltaX)
+        ) {
+
+            return;
+
+        }
+
+
+        /* حداقل فاصله برای Swipe */
+
+        if (Math.abs(deltaX) < 60) {
+            return;
+        }
+
+
+        if (deltaX > 0) {
+
+            nextPage();
+
+        } else {
+
+            previousPage();
+
+        }
 
     },
     { passive: true }
 );
 
 
-function handleSwipe() {
+/* =========================================
+   RESTART
+========================================= */
 
-    const difference =
-        touchStartX - touchEndX;
+function restart() {
 
-    if (Math.abs(difference) < 50) {
-        return;
-    }
-
-    if (difference > 0) {
-
-        nextScreen();
-
-    } else {
-
-        previousScreen();
-
-    }
+    showPage(1);
 
 }
 
 
-/* =========================
-   START
-========================= */
+/* =========================================
+   INITIALIZE
+========================================= */
 
-updateProgress();
+showPage(1);
