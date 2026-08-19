@@ -9,71 +9,114 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     >
 
-    <meta
-        name="theme-color"
-        content="#0b0b0a"
-    >
+    <meta name="theme-color" content="#080908">
 
-    <title>آرشیو آکاری</title>
+    <title>برای آکاری</title>
 
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+    <link rel="stylesheet" href="style.css">
 </head>
 
 
 <body>
 
-    <div class="grain"></div>
+    <div class="noise"></div>
 
-    <div class="ambient ambient-red"></div>
-    <div class="ambient ambient-green"></div>
+    <div class="glow glow-red"></div>
+    <div class="glow glow-green"></div>
 
 
     <main id="app">
 
 
-        <!-- =================================
-             00 — INTRO
-        ================================== -->
+        <!-- =========================
+             INTRO
+        ========================== -->
 
-        <section
-            class="page active"
-            id="page0"
-        >
+        <section class="page active" id="page0">
 
             <div class="intro">
 
-                <div class="archive-mark">
-                    AKARI / 011
+                <div class="archive-top">
+                    <span>AKARI / ARCHIVE</span>
+                    <span>01</span>
                 </div>
 
-                <div class="intro-dot"></div>
 
-                <p class="intro-small">
-                    یک آرشیو کوچک از چیزهایی
-                    که نباید گم می‌شدند.
-                </p>
+                <div class="memory-card">
 
-                <h1>
-                    آرشیو
-                    <i>آکاری</i>
-                </h1>
+                    <div class="card-line top-left"></div>
+                    <div class="card-line top-right"></div>
+                    <div class="card-line bottom-left"></div>
+                    <div class="card-line bottom-right"></div>
 
-                <p class="intro-description">
-                    اینجا چیزی برای خواندن نیست.
-                    <br>
-                    باید پیداش کنی.
-                </p>
+
+                    <div class="card-date">
+                        SOMEWHERE BETWEEN
+                        <br>
+                        THEN & NOW
+                    </div>
+
+
+                    <div class="cat-art">
+
+                        <div class="cat-ear ear-left"></div>
+                        <div class="cat-ear ear-right"></div>
+
+                        <div class="cat-head">
+
+                            <div class="cat-eye left-eye"></div>
+                            <div class="cat-eye right-eye"></div>
+
+                            <div class="cat-nose"></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-note">
+                        بعضی چیزها
+                        <br>
+                        بهتره گم نشن.
+                    </div>
+
+                </div>
+
+
+                <div class="intro-copy">
+
+                    <span class="eyebrow">
+                        PERSONAL ARCHIVE
+                    </span>
+
+                    <h1>
+                        برای
+                        <i>آکاری</i>
+                    </h1>
+
+                    <p>
+                        چند چیز کوچک که
+                        <br>
+                        هنوز جایی از این دنیا مانده‌اند.
+                    </p>
+
+                </div>
+
 
                 <button
                     class="primary-button"
-                    onclick="startArchive()"
+                    id="startButton"
                 >
-                    باز کردن کشو
-                    <span>←</span>
+                    بزن بریم
+                    <span>↗</span>
                 </button>
+
+
+                <div class="intro-footer">
+                    <span>NOT A LETTER</span>
+                    <span>NOT A LOVE STORY</span>
+                    <span>JUST SOMETHING</span>
+                </div>
 
             </div>
 
@@ -81,26 +124,20 @@
 
 
 
-        <!-- =================================
-             01 — NAME
-        ================================== -->
+        <!-- =========================
+             GAME 01
+        ========================== -->
 
-        <section
-            class="page"
-            id="page1"
-        >
+        <section class="page" id="page1">
 
-            <span class="page-number">
-                01 / 06
-            </span>
+            <span class="page-number">01 / 06</span>
 
+            <div class="game">
 
-            <div class="name-game">
-
-                <div class="game-intro">
+                <div class="game-head">
 
                     <span class="eyebrow">
-                        پرونده‌ی اول
+                        FILE 01 / NAME
                     </span>
 
                     <h2>
@@ -110,33 +147,28 @@
                     </h2>
 
                     <p>
-                        اسم درست را پیدا کن.
+                        اسمی که فقط در بعضی لحظه‌ها
+                        استفاده می‌شد را پیدا کن.
                     </p>
 
                 </div>
 
 
-                <div
-                    class="name-field"
-                    id="nameField"
-                >
+                <div class="name-grid" id="nameGrid">
 
-                    <button>مریم</button>
-                    <button>سارا</button>
                     <button>مهسا</button>
+                    <button>سارا</button>
                     <button>نیلوفر</button>
-                    <button>مهدیه</button>
-                    <button>نازنین</button>
+                    <button>مریم</button>
                     <button>هلیا</button>
+                    <button>مهدیه</button>
                     <button>الهام</button>
+                    <button>نازنین</button>
 
                 </div>
 
 
-                <div
-                    class="game-message"
-                    id="nameMessage"
-                ></div>
+                <div class="message" id="nameMessage"></div>
 
             </div>
 
@@ -144,26 +176,20 @@
 
 
 
-        <!-- =================================
-             02 — NIGHT
-        ================================== -->
+        <!-- =========================
+             GAME 02
+        ========================== -->
 
-        <section
-            class="page"
-            id="page2"
-        >
+        <section class="page" id="page2">
 
-            <span class="page-number">
-                02 / 06
-            </span>
+            <span class="page-number">02 / 06</span>
 
+            <div class="game">
 
-            <div class="night-game">
-
-                <div class="game-intro">
+                <div class="game-head">
 
                     <span class="eyebrow">
-                        پرونده‌ی دوم
+                        FILE 02 / NIGHT
                     </span>
 
                     <h2>
@@ -171,6 +197,10 @@
                         <br>
                         <i>تمام نمی‌شوند.</i>
                     </h2>
+
+                    <p>
+                        چراغ را روشن نگه دار.
+                    </p>
 
                 </div>
 
@@ -187,33 +217,41 @@
                     </div>
 
 
+                    <div class="stars">
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                    </div>
+
+
                     <div class="lamp">
 
-                        <div class="lamp-light"></div>
+                        <div class="lamp-glow"></div>
 
                         <div class="lamp-shade"></div>
+
+                        <div class="lamp-neck"></div>
 
                         <div class="lamp-base"></div>
 
                     </div>
 
 
-                    <div class="clock">
+                    <div class="clock" id="clock">
                         02:17
                     </div>
 
 
-                    <p class="night-hint">
-                        چراغ را روشن نگه دار.
-                    </p>
+                    <span class="tap-hint">
+                        لمس کن
+                    </span>
 
                 </div>
 
 
-                <p
-                    class="game-message"
-                    id="nightMessage"
-                ></p>
+                <div class="message" id="nightMessage"></div>
 
             </div>
 
@@ -221,26 +259,20 @@
 
 
 
-        <!-- =================================
-             03 — CHOCOLATE MILK
-        ================================== -->
+        <!-- =========================
+             GAME 03
+        ========================== -->
 
-        <section
-            class="page"
-            id="page3"
-        >
+        <section class="page" id="page3">
 
-            <span class="page-number">
-                03 / 06
-            </span>
+            <span class="page-number">03 / 06</span>
 
+            <div class="game">
 
-            <div class="milk-game">
-
-                <div class="game-intro">
+                <div class="game-head">
 
                     <span class="eyebrow">
-                        پرونده‌ی سوم
+                        FILE 03 / COCOA
                     </span>
 
                     <h2>
@@ -250,24 +282,22 @@
                     </h2>
 
                     <p>
-                        سه چیز را درست انتخاب کن.
+                        سه چیز درست انتخاب کن.
                     </p>
 
                 </div>
 
 
-                <div class="milk-table">
+                <div class="cocoa-table">
 
-                    <div
-                        class="milk-glass"
-                        id="milkGlass"
-                    >
+                    <div class="glass">
 
-                        <div class="milk-liquid"></div>
+                        <div
+                            class="liquid"
+                            id="liquid"
+                        ></div>
 
-                        <div class="glass-label">
-                            AKARI
-                        </div>
+                        <span>AKARI</span>
 
                     </div>
 
@@ -277,27 +307,19 @@
                         id="ingredients"
                     >
 
-                        <button
-                            data-ingredient="milk"
-                        >
+                        <button data-value="milk">
                             شیر
                         </button>
 
-                        <button
-                            data-ingredient="cocoa"
-                        >
+                        <button data-value="cocoa">
                             کاکائو
                         </button>
 
-                        <button
-                            data-ingredient="ice"
-                        >
+                        <button data-value="ice">
                             یخ
                         </button>
 
-                        <button
-                            data-ingredient="laugh"
-                        >
+                        <button data-value="laugh">
                             خنده
                         </button>
 
@@ -306,10 +328,7 @@
                 </div>
 
 
-                <p
-                    class="game-message"
-                    id="milkMessage"
-                ></p>
+                <div class="message" id="milkMessage"></div>
 
             </div>
 
@@ -317,26 +336,20 @@
 
 
 
-        <!-- =================================
-             04 — FLOWER
-        ================================== -->
+        <!-- =========================
+             GAME 04
+        ========================== -->
 
-        <section
-            class="page"
-            id="page4"
-        >
+        <section class="page" id="page4">
 
-            <span class="page-number">
-                04 / 06
-            </span>
+            <span class="page-number">04 / 06</span>
 
+            <div class="game">
 
-            <div class="flower-game">
-
-                <div class="game-intro">
+                <div class="game-head">
 
                     <span class="eyebrow">
-                        پرونده‌ی چهارم
+                        FILE 04 / FLOWER
                     </span>
 
                     <h2>
@@ -353,59 +366,58 @@
                 </div>
 
 
-                <div
-                    class="flower-stage"
-                    id="flowerStage"
-                >
+                <div class="flower-room">
 
-                    <div class="flower-stem"></div>
+                    <div class="flower">
 
-                    <div class="flower-head">
+                        <div class="stem"></div>
 
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <b></b>
+                        <div class="petals">
+
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                            <b></b>
+
+                        </div>
 
                     </div>
 
 
-                    <div
-                        class="flower-weight weight-1"
+                    <button
+                        class="weight weight-one"
                         data-weight="pride"
                     >
                         غرور
-                    </div>
+                    </button>
 
-                    <div
-                        class="flower-weight weight-2"
+                    <button
+                        class="weight weight-two"
                         data-weight="hurt"
                     >
                         دلخوری
-                    </div>
+                    </button>
 
-                    <div
-                        class="flower-weight weight-3"
+                    <button
+                        class="weight weight-three"
                         data-weight="waiting"
                     >
                         انتظار
-                    </div>
+                    </button>
 
-                    <div
-                        class="flower-weight weight-4"
+                    <button
+                        class="weight weight-four"
                         data-weight="anger"
                     >
                         قهر
-                    </div>
+                    </button>
 
                 </div>
 
 
-                <p
-                    class="game-message"
-                    id="flowerMessage"
-                ></p>
+                <div class="message" id="flowerMessage"></div>
 
             </div>
 
@@ -413,26 +425,20 @@
 
 
 
-        <!-- =================================
-             05 — DOG & CAT
-        ================================== -->
+        <!-- =========================
+             GAME 05
+        ========================== -->
 
-        <section
-            class="page"
-            id="page5"
-        >
+        <section class="page" id="page5">
 
-            <span class="page-number">
-                05 / 06
-            </span>
+            <span class="page-number">05 / 06</span>
 
+            <div class="game">
 
-            <div class="us-game">
-
-                <div class="game-intro">
+                <div class="game-head">
 
                     <span class="eyebrow">
-                        پرونده‌ی پنجم
+                        FILE 05 / US
                     </span>
 
                     <h2>
@@ -440,15 +446,15 @@
                     </h2>
 
                     <p>
-                        این دوتا را نزدیک کن.
+                        این دوتا را به هم نزدیک کن.
                     </p>
 
                 </div>
 
 
                 <div
-                    class="animal-stage"
-                    id="animalStage"
+                    class="animal-room"
+                    id="animalRoom"
                 >
 
                     <div
@@ -457,29 +463,37 @@
                     >
 
                         <div class="dog-ear"></div>
-                        <div class="dog-face"></div>
+
+                        <div class="animal-face">
+                            <i></i>
+                            <i></i>
+                        </div>
 
                     </div>
 
 
                     <div
-                        class="animal cat-small"
+                        class="animal cat"
                         id="cat"
                     >
 
-                        <div class="cat-ear left"></div>
-                        <div class="cat-ear right"></div>
-                        <div class="cat-face"></div>
+                        <div class="cat-point left"></div>
+                        <div class="cat-point right"></div>
+
+                        <div class="animal-face">
+                            <i></i>
+                            <i></i>
+                        </div>
 
                     </div>
+
+
+                    <div class="floor-line"></div>
 
                 </div>
 
 
-                <p
-                    class="game-message"
-                    id="usMessage"
-                ></p>
+                <div class="message" id="animalMessage"></div>
 
             </div>
 
@@ -487,26 +501,20 @@
 
 
 
-        <!-- =================================
-             06 — WRITING
-        ================================== -->
+        <!-- =========================
+             GAME 06
+        ========================== -->
 
-        <section
-            class="page"
-            id="page6"
-        >
+        <section class="page" id="page6">
 
-            <span class="page-number">
-                06 / 06
-            </span>
+            <span class="page-number">06 / 06</span>
 
+            <div class="game">
 
-            <div class="writing-game">
-
-                <div class="game-intro">
+                <div class="game-head">
 
                     <span class="eyebrow">
-                        پرونده‌ی آخر
+                        FILE 06 / WRITING
                     </span>
 
                     <h2>
@@ -523,8 +531,8 @@
 
 
                 <div
-                    class="word-pool"
-                    id="wordPool"
+                    class="word-grid"
+                    id="wordGrid"
                 >
 
                     <button>خاطره</button>
@@ -539,8 +547,8 @@
 
 
                 <div
-                    class="sentence"
-                    id="sentence"
+                    class="sentence-box"
+                    id="sentenceBox"
                 >
                     <span>
                         هنوز چیزی نوشته نشده.
@@ -550,10 +558,10 @@
 
                 <button
                     class="primary-button hidden"
-                    id="openDrawer"
+                    id="drawerButton"
                 >
                     آخرین کشو
-                    <span>←</span>
+                    <span>↗</span>
                 </button>
 
             </div>
@@ -562,40 +570,39 @@
 
 
 
-        <!-- =================================
-             FINAL DRAWER
-        ================================== -->
+        <!-- =========================
+             FINAL
+        ========================== -->
 
-        <section
-            class="page"
-            id="page7"
-        >
+        <section class="page" id="page7">
 
-            <div class="final-drawer">
+            <div class="final">
 
                 <span class="eyebrow">
-                    آخرین کشو
+                    THE LAST DRAWER
                 </span>
 
 
                 <div
-                    class="calendar"
-                    id="calendar"
+                    class="drawer"
+                    id="drawer"
                 >
 
-                    <div class="calendar-top">
-                        AUG / 20XX
+                    <div class="drawer-label">
+                        ARCHIVE
                     </div>
 
-                    <div class="calendar-date">
-                        <span>روز</span>
+                    <div class="drawer-date">
+                        <small>ONE DAY</small>
                         <strong>?</strong>
+                        <small>WE BOTH BEGAN</small>
                     </div>
+
 
                     <button
-                        onclick="openBirthday()"
+                        id="birthdayButton"
                     >
-                        باز کردن
+                        بازش کن
                     </button>
 
                 </div>
@@ -607,7 +614,7 @@
                 >
 
                     <span>
-                        یک شروع مشترک
+                        برای آکاری
                     </span>
 
                     <h1>
@@ -615,15 +622,24 @@
                         <i>مبارک.</i>
                     </h1>
 
-                    <div class="final-line"></div>
+                    <div class="divider"></div>
 
                     <p>
-                        برای آکاری،
+                        برای کسی که یک زمانی
                         <br>
-                        در روزی که هر دومون
+                        بخش بزرگی از شب‌های من بود.
+                        <br><br>
+                        دوری دلیل کافی برای
                         <br>
-                        از یک نقطه شروع کردیم.
+                        تبریک نگفتن نیست.
                     </p>
+
+                    <small class="final-note">
+                        بعضی آدم‌ها را
+                        <br>
+                        حتی پایان رابطه هم
+                        از ارزش نمی‌اندازد.
+                    </small>
 
                 </div>
 
@@ -631,19 +647,22 @@
 
         </section>
 
-
     </main>
 
 
 
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
     <nav class="navigation">
 
-        <span id="currentPage">
+        <span id="pageCounter">
             00
         </span>
 
-        <div class="nav-line">
-            <div id="navProgress"></div>
+        <div class="progress">
+            <div id="progressBar"></div>
         </div>
 
         <span>
@@ -653,9 +672,8 @@
     </nav>
 
 
-
     <script src="script.js"></script>
 
 </body>
 
-</html>
+    </html>
