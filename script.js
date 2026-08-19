@@ -1,78 +1,71 @@
 /* =========================================
    AKARI ARCHIVE
-   Interactive Engine
+   GAME ENGINE
 ========================================= */
-
-
-/* =========================================
-   GLOBAL STATE
-========================================= */
-
-let currentPage = 0;
-
-const totalPages = 7;
-
-const completed = {
-    name: false,
-    night: false,
-    milk: false,
-    flower: false,
-    animals: false,
-    writing: false
-};
 
 
 /* =========================================
    PAGE SYSTEM
 ========================================= */
 
-const pages = document.querySelectorAll(".page");
+let currentPage = 0;
 
-const currentPageText =
-    document.getElementById("currentPage");
+const totalPages = 7;
 
-const navProgress =
-    document.getElementById("navProgress");
+const pages =
+    document.querySelectorAll(".page");
+
+const pageCounter =
+    document.getElementById("pageCounter");
+
+const progressBar =
+    document.getElementById("progressBar");
 
 
 function updateNavigation() {
 
-    currentPageText.textContent =
+    pageCounter.textContent =
         String(currentPage).padStart(2, "0");
 
     const progress =
         (currentPage / totalPages) * 100;
 
-    navProgress.style.width =
+    progressBar.style.width =
         `${progress}%`;
 }
 
 
-function goToPage(number) {
+function goToPage(pageNumber) {
 
-    if (number < 0 || number > totalPages) {
+    if (
+        pageNumber < 0 ||
+        pageNumber > totalPages
+    ) {
         return;
     }
 
+
     pages.forEach(page => {
+
         page.classList.remove("active");
+
     });
 
+
     const target =
-        document.getElementById(`page${number}`);
+        document.getElementById(
+            `page${pageNumber}`
+        );
+
 
     if (!target) return;
 
+
     target.classList.add("active");
 
-    currentPage = number;
+    currentPage = pageNumber;
 
     updateNavigation();
-}
-
-
-function nextPage() {
-    goToPage(currentPage + 1);
 }
 
 
@@ -80,18 +73,30 @@ function nextPage() {
    INTRO
 ========================================= */
 
-function startArchive() {
-    goToPage(1);
-}
+const startButton =
+    document.getElementById(
+        "startButton"
+    );
+
+
+startButton.addEventListener(
+    "click",
+    () => {
+
+        goToPage(1);
+
+    }
+);
 
 
 /* =========================================
-   01 — NAME GAME
+   GAME 01
+   FIND MAHDIEH
 ========================================= */
 
 const nameButtons =
     document.querySelectorAll(
-        "#nameField button"
+        "#nameGrid button"
     );
 
 const nameMessage =
@@ -100,50 +105,84 @@ const nameMessage =
     );
 
 
+let nameCompleted = false;
+
+
 nameButtons.forEach(button => {
 
-    button.addEventListener("click", () => {
+    button.addEventListener(
+        "click",
+        () => {
 
-        if (button.textContent.trim() === "مهدیه") {
+            if (nameCompleted) return;
 
-            button.classList.add("correct");
 
-            completed.name = true;
+            const value =
+                button.textContent.trim();
 
-            nameMessage.innerHTML = `
-                مهدیه صدات نمی‌کنم.
-                <br>
-                تقریباً هیچ‌وقت.
-                <br><br>
-                بعضی اسم‌ها برای صدا زدن نیستند؛
-                برای وقت‌هایی‌اند که چیزی واقعاً مهم است.
-            `;
 
-            nameMessage.classList.add("show");
+            if (value === "مهدیه") {
 
-            setTimeout(() => {
-                nextPage();
-            }, 3200);
+                nameCompleted = true;
 
-        } else {
+                button.classList.add(
+                    "correct"
+                );
 
-            button.style.transform =
-                "translateX(4px)";
 
-            setTimeout(() => {
-                button.style.transform =
-                    "translateX(0)";
-            }, 180);
+                nameMessage.innerHTML = `
+                    بعضی اسم‌ها برای صدا زدن نیستند.
+                    <br><br>
+                    «مهدیه» یکی از همان‌ها بود.
+                `;
+
+                nameMessage.classList.add(
+                    "show"
+                );
+
+
+                setTimeout(
+                    () => goToPage(2),
+                    3200
+                );
+
+            } else {
+
+                button.animate(
+                    [
+                        {
+                            transform:
+                                "translateX(0)"
+                        },
+                        {
+                            transform:
+                                "translateX(6px)"
+                        },
+                        {
+                            transform:
+                                "translateX(-6px)"
+                        },
+                        {
+                            transform:
+                                "translateX(0)"
+                        }
+                    ],
+                    {
+                        duration: 240
+                    }
+                );
+
+            }
 
         }
-
-    });
+    );
 
 });
 
 
 /* =========================================
-   02 — NIGHT GAME
+   GAME 02
+   NIGHT
 ========================================= */
 
 const nightRoom =
@@ -156,384 +195,69 @@ const nightMessage =
         "nightMessage"
     );
 
-const lampLight =
-    document.querySelector(
-        ".lamp-light"
-    );
-
 const clock =
+    document.getElementById(
+        "clock"
+    );
+
+const lampGlow =
     document.querySelector(
-        ".clock"
+        ".lamp-glow"
     );
 
 
-let nightTouches = 0;
+let nightCount = 0;
 
-const times = [
+const nightTimes = [
     "02:17",
-    "03:41",
-    "04:26",
-    "05:12",
-    "06:03"
+    "03:04",
+    "03:51",
+    "04:38",
+    "05:26"
 ];
 
 
-nightRoom.addEventListener("click", () => {
-
-    if (completed.night) return;
-
-    nightTouches++;
-
-    const index =
-        Math.min(
-            nightTouches,
-            times.length - 1
-        );
-
-    clock.textContent =
-        times[index];
-
-    lampLight.style.opacity =
-        0.35 + (nightTouches * 0.12);
-
-    if (nightTouches >= 5) {
-
-        completed.night = true;
-
-        nightMessage.innerHTML = `
-            خیلی از شب‌ها قرار نبود
-            تا صبح بیدار بمونیم.
-            <br><br>
-            ولی موندیم.
-        `;
-
-        nightMessage.classList.add("show");
-
-        setTimeout(() => {
-            nextPage();
-        }, 3000);
-    }
-
-});
-
-
-/* =========================================
-   03 — CHOCOLATE MILK
-========================================= */
-
-const ingredientButtons =
-    document.querySelectorAll(
-        "#ingredients button"
-    );
-
-const milkLiquid =
-    document.querySelector(
-        ".milk-liquid"
-    );
-
-const milkMessage =
-    document.getElementById(
-        "milkMessage"
-    );
-
-
-let selectedIngredients = [];
-
-
-ingredientButtons.forEach(button => {
-
-    button.addEventListener("click", () => {
-
-        if (completed.milk) return;
-
-        const ingredient =
-            button.dataset.ingredient;
-
-        if (
-            selectedIngredients.includes(
-                ingredient
-            )
-        ) {
-            return;
-        }
-
-        selectedIngredients.push(
-            ingredient
-        );
-
-        button.classList.add(
-            "selected"
-        );
-
-
-        const amount =
-            selectedIngredients.length * 25;
-
-        milkLiquid.style.height =
-            `${amount}%`;
-
-
-        /*
-            ترتیب درست:
-
-            شیر
-            کاکائو
-            خنده
-
-            یخ عمداً دام است.
-        */
-
-        if (
-            selectedIngredients.length === 3
-        ) {
-
-            const correct =
-                selectedIngredients[0] === "milk" &&
-                selectedIngredients[1] === "cocoa" &&
-                selectedIngredients[2] === "laugh";
-
-            if (correct) {
-
-                completed.milk = true;
-
-                milkMessage.innerHTML = `
-                    این یکی رو نمی‌شه
-                    از فروشگاه خرید.
-                    <br><br>
-                    بعضی شب‌ها فقط با خنده
-                    خوب می‌شن.
-                `;
-
-                milkMessage.classList.add(
-                    "show"
-                );
-
-                setTimeout(() => {
-                    nextPage();
-                }, 3200);
-
-            } else {
-
-                milkMessage.innerHTML = `
-                    نه.
-                    <br>
-                    این دستور یه چیزی کم داشت.
-                `;
-
-                milkMessage.classList.add(
-                    "show"
-                );
-
-                setTimeout(() => {
-
-                    selectedIngredients = [];
-
-                    ingredientButtons.forEach(
-                        item =>
-                            item.classList.remove(
-                                "selected"
-                            )
-                    );
-
-                    milkLiquid.style.height =
-                        "0%";
-
-                    milkMessage.classList.remove(
-                        "show"
-                    );
-
-                }, 1300);
-
-            }
-
-        }
-
-    });
-
-});
-
-
-/* =========================================
-   04 — FLOWER GAME
-========================================= */
-
-const flowerWeights =
-    document.querySelectorAll(
-        ".flower-weight"
-    );
-
-const flowerMessage =
-    document.getElementById(
-        "flowerMessage"
-    );
-
-let removedWeights = 0;
-
-
-flowerWeights.forEach(weight => {
-
-    weight.addEventListener("click", () => {
-
-        if (completed.flower) return;
-
-        weight.classList.add(
-            "removed"
-        );
-
-        removedWeights++;
-
-
-        if (removedWeights >= 4) {
-
-            completed.flower = true;
-
-            const flower =
-                document.querySelector(
-                    ".flower-head"
-                );
-
-            const stem =
-                document.querySelector(
-                    ".flower-stem"
-                );
-
-            flower.style.transform =
-                "translateX(-50%) translateY(-8px)";
-
-            stem.style.height =
-                "195px";
-
-
-            flowerMessage.innerHTML = `
-                بعضی چیزها رو نمی‌شه
-                با خودت تا آخر مسیر ببری.
-                <br><br>
-                اما این به معنی
-                بی‌ارزش بودنشون نیست.
-            `;
-
-            flowerMessage.classList.add(
-                "show"
-            );
-
-
-            setTimeout(() => {
-                nextPage();
-            }, 3500);
-
-        }
-
-    });
-
-});
-
-
-/* =========================================
-   05 — DOG & CAT
-========================================= */
-
-const dog =
-    document.getElementById("dog");
-
-const cat =
-    document.getElementById("cat");
-
-const animalStage =
-    document.getElementById(
-        "animalStage"
-    );
-
-const usMessage =
-    document.getElementById(
-        "usMessage"
-    );
-
-
-let animalTouches = 0;
-
-
-animalStage.addEventListener(
+nightRoom.addEventListener(
     "click",
-    event => {
+    () => {
 
-        if (completed.animals) return;
-
-        animalTouches++;
-
-        const stageWidth =
-            animalStage.offsetWidth;
-
-        const target =
-            stageWidth * 0.50;
+        if (nightCount >= 5) return;
 
 
-        if (animalTouches === 1) {
-
-            dog.style.left =
-                "28%";
-
-            cat.style.right =
-                "28%";
-
-        }
+        nightCount++;
 
 
-        if (animalTouches === 2) {
-
-            dog.style.left =
-                "38%";
-
-            cat.style.right =
-                "38%";
-
-        }
+        clock.textContent =
+            nightTimes[
+                nightCount - 1
+            ];
 
 
-        if (animalTouches === 3) {
-
-            dog.style.left =
-                "44%";
-
-            cat.style.right =
-                "44%";
-
-        }
+        lampGlow.style.opacity =
+            String(
+                .28 +
+                (nightCount * .14)
+            );
 
 
-        if (animalTouches >= 4) {
+        if (nightCount === 5) {
 
-            completed.animals = true;
-
-            dog.style.left =
-                "46%";
-
-            cat.style.right =
-                "46%";
-
-
-            usMessage.innerHTML = `
-                ما همیشه یه جور عجیبی
-                <br>
-                مثل سگ و گربه بودیم.
+            nightMessage.innerHTML = `
+                خیلی از شب‌ها قرار نبود
+                تا صبح بیدار بمانیم.
                 <br><br>
-                می‌پریدیم به هم،
-                قهر می‌کردیم،
-                آشتی می‌کردیم،
-                و بعضی شب‌ها تا صبح می‌خندیدیم.
-                <br><br>
-                این بار اما...
-                <br>
-                هیچ‌کدوم کوتاه نیومدیم.
+                ولی ماندیم.
             `;
 
-            usMessage.classList.add(
+            nightMessage.classList.add(
                 "show"
             );
 
 
-            setTimeout(() => {
-                nextPage();
-            }, 5200);
+            setTimeout(
+                () => goToPage(3),
+                3300
+            );
 
         }
 
@@ -542,22 +266,328 @@ animalStage.addEventListener(
 
 
 /* =========================================
-   06 — WRITING GAME
+   GAME 03
+   CHOCOLATE MILK
+========================================= */
+
+const ingredientButtons =
+    document.querySelectorAll(
+        "#ingredients button"
+    );
+
+const liquid =
+    document.getElementById(
+        "liquid"
+    );
+
+const milkMessage =
+    document.getElementById(
+        "milkMessage"
+    );
+
+
+let ingredientsChosen = [];
+
+
+ingredientButtons.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            const value =
+                button.dataset.value;
+
+
+            if (
+                ingredientsChosen.includes(
+                    value
+                )
+            ) {
+                return;
+            }
+
+
+            if (
+                ingredientsChosen.length >= 3
+            ) {
+                return;
+            }
+
+
+            ingredientsChosen.push(value);
+
+            button.classList.add(
+                "selected"
+            );
+
+
+            liquid.style.height =
+                `${ingredientsChosen.length * 25}%`;
+
+
+            if (
+                ingredientsChosen.length === 3
+            ) {
+
+                const correct =
+                    ingredientsChosen[0] === "milk" &&
+                    ingredientsChosen[1] === "cocoa" &&
+                    ingredientsChosen[2] === "laugh";
+
+
+                if (correct) {
+
+                    milkMessage.innerHTML = `
+                        دستور درست شد.
+                        <br><br>
+                        شیر، کاکائو،
+                        و چیزی که هیچ منویی
+                        نمی‌تواند بفروشد.
+                    `;
+
+                    milkMessage.classList.add(
+                        "show"
+                    );
+
+
+                    setTimeout(
+                        () => goToPage(4),
+                        3500
+                    );
+
+                } else {
+
+                    milkMessage.innerHTML = `
+                        نه.
+                        <br>
+                        این یکی خراب شد.
+                    `;
+
+                    milkMessage.classList.add(
+                        "show"
+                    );
+
+
+                    setTimeout(
+                        resetMilk,
+                        1200
+                    );
+
+                }
+
+            }
+
+        }
+    );
+
+});
+
+
+function resetMilk() {
+
+    ingredientsChosen = [];
+
+    ingredientButtons.forEach(
+        button => {
+            button.classList.remove(
+                "selected"
+            );
+        }
+    );
+
+
+    liquid.style.height = "0%";
+
+
+    milkMessage.classList.remove(
+        "show"
+    );
+
+}
+
+
+/* =========================================
+   GAME 04
+   FLOWER
+========================================= */
+
+const weights =
+    document.querySelectorAll(
+        ".weight"
+    );
+
+const flowerMessage =
+    document.getElementById(
+        "flowerMessage"
+    );
+
+const stem =
+    document.querySelector(
+        ".stem"
+    );
+
+
+let weightsRemoved = 0;
+
+
+weights.forEach(weight => {
+
+    weight.addEventListener(
+        "click",
+        () => {
+
+            if (
+                weight.classList.contains(
+                    "removed"
+                )
+            ) {
+                return;
+            }
+
+
+            weight.classList.add(
+                "removed"
+            );
+
+
+            weightsRemoved++;
+
+
+            if (weightsRemoved === 4) {
+
+                stem.style.height =
+                    "195px";
+
+
+                flowerMessage.innerHTML = `
+                    بعضی چیزها را نمی‌شود
+                    تا آخر مسیر با خودت برد.
+                    <br><br>
+                    سبک‌تر شدن،
+                    همیشه به معنی فراموش کردن نیست.
+                `;
+
+                flowerMessage.classList.add(
+                    "show"
+                );
+
+
+                setTimeout(
+                    () => goToPage(5),
+                    3800
+                );
+
+            }
+
+        }
+    );
+
+});
+
+
+/* =========================================
+   GAME 05
+   DOG & CAT
+========================================= */
+
+const animalRoom =
+    document.getElementById(
+        "animalRoom"
+    );
+
+const dog =
+    document.getElementById(
+        "dog"
+    );
+
+const cat =
+    document.getElementById(
+        "cat"
+    );
+
+const animalMessage =
+    document.getElementById(
+        "animalMessage"
+    );
+
+
+let animalSteps = 0;
+
+
+animalRoom.addEventListener(
+    "click",
+    () => {
+
+        if (animalSteps >= 4) return;
+
+
+        animalSteps++;
+
+
+        const positions = [
+            12,
+            25,
+            36,
+            44
+        ];
+
+
+        dog.style.left =
+            `${positions[animalSteps - 1]}%`;
+
+        cat.style.right =
+            `${positions[animalSteps - 1]}%`;
+
+
+        if (animalSteps === 4) {
+
+            animalMessage.innerHTML = `
+                مثل همیشه،
+                <br>
+                مثل سگ و گربه به هم می‌پریدیم.
+                <br><br>
+                ولی خیلی از شب‌ها
+                تا صبح می‌خندیدیم
+                و برای هم از روزمان می‌گفتیم.
+                <br><br>
+                این بار هیچ‌کدام کوتاه نیامدیم.
+            `;
+
+            animalMessage.classList.add(
+                "show"
+            );
+
+
+            setTimeout(
+                () => goToPage(6),
+                5200
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   GAME 06
+   WRITING
 ========================================= */
 
 const wordButtons =
     document.querySelectorAll(
-        "#wordPool button"
+        "#wordGrid button"
     );
 
-const sentence =
+const sentenceBox =
     document.getElementById(
-        "sentence"
+        "sentenceBox"
     );
 
-const openDrawer =
+const drawerButton =
     document.getElementById(
-        "openDrawer"
+        "drawerButton"
     );
 
 
@@ -566,60 +596,61 @@ let selectedWords = [];
 
 wordButtons.forEach(button => {
 
-    button.addEventListener("click", () => {
+    button.addEventListener(
+        "click",
+        () => {
 
-        const word =
-            button.textContent.trim();
-
-
-        if (
-            selectedWords.includes(word)
-        ) {
-            return;
-        }
+            const word =
+                button.textContent.trim();
 
 
-        if (
-            selectedWords.length >= 3
-        ) {
-            return;
-        }
+            if (
+                selectedWords.includes(word)
+            ) {
+                return;
+            }
 
 
-        selectedWords.push(word);
-
-        button.classList.add(
-            "selected"
-        );
-
-
-        renderSentence();
+            if (
+                selectedWords.length >= 3
+            ) {
+                return;
+            }
 
 
-        if (
-            selectedWords.length === 3
-        ) {
+            selectedWords.push(word);
 
-            setTimeout(() => {
+            button.classList.add(
+                "selected"
+            );
 
-                openDrawer.classList.remove(
+
+            renderSentence();
+
+
+            if (
+                selectedWords.length === 3
+            ) {
+
+                drawerButton.classList.remove(
                     "hidden"
                 );
 
-            }, 700);
+            }
 
         }
-
-    });
+    );
 
 });
 
 
 function renderSentence() {
 
-    if (selectedWords.length === 0) {
+    if (
+        selectedWords.length === 0
+    ) {
 
-        sentence.innerHTML = `
+        sentenceBox.innerHTML = `
             <span>
                 هنوز چیزی نوشته نشده.
             </span>
@@ -629,12 +660,8 @@ function renderSentence() {
     }
 
 
-    const words =
-        selectedWords.join("، ");
-
-
-    sentence.innerHTML = `
-        ${words}
+    sentenceBox.innerHTML = `
+        ${selectedWords.join("، ")}
         <br>
         <small>
             بعضی داستان‌ها
@@ -645,51 +672,57 @@ function renderSentence() {
 }
 
 
-openDrawer.addEventListener(
+drawerButton.addEventListener(
     "click",
     () => {
 
-        completed.writing = true;
-
-        nextPage();
+        goToPage(7);
 
     }
 );
 
 
 /* =========================================
-   FINAL
+   FINAL DRAWER
 ========================================= */
 
-function openBirthday() {
-
-    const calendar =
-        document.getElementById(
-            "calendar"
-        );
-
-    const birthday =
-        document.getElementById(
-            "birthday"
-        );
-
-
-    calendar.classList.add(
-        "hidden"
+const birthdayButton =
+    document.getElementById(
+        "birthdayButton"
     );
 
-    birthday.classList.remove(
-        "hidden"
+const drawer =
+    document.getElementById(
+        "drawer"
+    );
+
+const birthday =
+    document.getElementById(
+        "birthday"
     );
 
 
-    currentPageText.textContent =
-        "∞";
+birthdayButton.addEventListener(
+    "click",
+    () => {
 
-    navProgress.style.width =
-        "100%";
+        drawer.classList.add(
+            "hidden"
+        );
 
-}
+        birthday.classList.remove(
+            "hidden"
+        );
+
+
+        pageCounter.textContent =
+            "∞";
+
+        progressBar.style.width =
+            "100%";
+
+    }
+);
 
 
 /* =========================================
