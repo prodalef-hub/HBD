@@ -3,23 +3,28 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>برای آکاری</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta
+        name="theme-color"
+        content="#0b0b0a"
+    >
+
+    <title>آرشیو آکاری</title>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@400;500&display=swap"
-        rel="stylesheet">
-
-    <link rel="stylesheet" href="style.css">
+        rel="stylesheet"
+        href="style.css"
+    >
 </head>
+
 
 <body>
 
-    <!-- Background -->
     <div class="grain"></div>
 
     <div class="ambient ambient-red"></div>
@@ -29,562 +34,612 @@
     <main id="app">
 
 
-        <!-- =====================================
-             PAGE 01
-             INTRO
-        ====================================== -->
+        <!-- =================================
+             00 — INTRO
+        ================================== -->
 
-        <section class="page active" id="page1">
+        <section
+            class="page active"
+            id="page0"
+        >
 
-            <div class="intro-symbol">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <div class="intro">
 
-            <div class="intro-label">
-                A LITTLE THING FOR AKARI
-            </div>
-
-            <h1 class="hero-title">
-                یک روز
-                <br>
-                <i>دو تولد.</i>
-            </h1>
-
-            <p class="hero-text">
-                از بین تمام تاریخ‌های تقویم،
-                <br>
-                عجیب است که دقیقاً یک روز
-                برای شروع شدنِ هردومون انتخاب شد.
-                <br><br>
-                مسیرها اما همیشه شبیه هم نمی‌مونن.
-            </p>
-
-            <button class="enter-btn" onclick="nextPage()">
-                <span>شروع کنیم</span>
-                <b>↗</b>
-            </button>
-
-            <div class="birth-note">
-                SAME BEGINNING
-                <br>
-                DIFFERENT DESTINATIONS
-            </div>
-
-        </section>
-
-
-
-        <!-- =====================================
-             PAGE 02
-             AKARI
-        ====================================== -->
-
-        <section class="page" id="page2">
-
-            <div class="page-index">
-                01 / 05
-            </div>
-
-
-            <div class="cat-layout">
-
-
-                <!-- CAT -->
-
-                <div class="cat-illustration">
-
-                    <div class="cat-shadow"></div>
-
-                    <div class="cat">
-
-                        <div class="ear ear-left"></div>
-                        <div class="ear ear-right"></div>
-
-                        <div class="cat-head">
-
-                            <div class="eye eye-left">
-                                <span></span>
-                            </div>
-
-                            <div class="eye eye-right">
-                                <span></span>
-                            </div>
-
-                            <div class="cat-nose"></div>
-
-                            <div class="whiskers whiskers-left">
-                                <i></i>
-                                <i></i>
-                                <i></i>
-                            </div>
-
-                            <div class="whiskers whiskers-right">
-                                <i></i>
-                                <i></i>
-                                <i></i>
-                            </div>
-
-                        </div>
-
-                        <div class="cat-body"></div>
-
-                        <div class="cat-tail"></div>
-
-                    </div>
-
-                    <div class="cat-caption">
-                        YES, THE CAT STAYS
-                    </div>
-
+                <div class="archive-mark">
+                    AKARI / 011
                 </div>
 
-
-
-                <!-- TEXT -->
-
-                <div class="page-copy">
-
-                    <span class="eyebrow">
-                        FIRST THING
-                    </span>
-
-                    <h2>
-                        اول از همه،
-                        <br>
-                        خودِ <i>آکاری.</i>
-                    </h2>
-
-                    <p>
-                        مهدیه صدات نمی‌کنم.
-                        تقریباً هیچ‌وقت.
-                        <br><br>
-
-                        مگر وقتی چیزی واقعاً مهم باشه،
-                        وقتی حرفی باید جدی گرفته بشه،
-                        یا وقتی احساسات برای چند لحظه
-                        منطق رو کنار بزنن.
-                        <br><br>
-
-                        برای بقیه شاید فقط یک اسم باشه؛
-                        برای من، «مهدیه» همیشه اسمِ
-                        لحظه‌های مهم بود.
-                    </p>
-
-                    <button class="next-btn" onclick="nextPage()">
-                        ادامه
-                        <span>←</span>
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =====================================
-             PAGE 03
-             CHOCOLATE MILK
-        ====================================== -->
-
-        <section class="page" id="page3">
-
-            <div class="page-index">
-                02 / 05
-            </div>
-
-
-            <div class="chocolate-layout">
-
-
-                <!-- BOTTLE -->
-
-                <div class="bottle-scene">
-
-                    <div class="bottle-glow"></div>
-
-                    <div class="milk-bottle">
-
-                        <div class="bottle-cap"></div>
-
-                        <div class="bottle-neck"></div>
-
-                        <div class="bottle-body">
-
-                            <div class="bottle-label">
-
-                                <small>
-                                    SPECIAL EDITION
-                                </small>
-
-                                <strong>
-                                    CHOCO
-                                </strong>
-
-                                <span>
-                                    MILK
-                                </span>
-
-                                <div class="label-line"></div>
-
-                                <em>
-                                    for a good day
-                                </em>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- TEXT -->
-
-                <div class="page-copy chocolate-copy">
-
-                    <span class="eyebrow">
-                        SECOND THING
-                    </span>
-
-                    <h2>
-                        بعدش،
-                        <br>
-                        یک <i>شیرکاکائو.</i>
-                    </h2>
-
-                    <p>
-                        برای کسی که احتمالاً
-                        اگر قرار باشه بین یک سخنرانی طولانی
-                        و یک شیرکاکائو انتخاب کنه،
-                        حداقل اولی رو بررسی می‌کنه.
-                        <br><br>
-
-                        منطق چیز خوبیه.
-                        <br><br>
-
-                        ولی بعضی روزها،
-                        آدم فقط باید بشینه،
-                        بخنده،
-                        و شیرکاکائوش رو بخوره.
-                    </p>
-
-                    <button class="next-btn" onclick="nextPage()">
-                        بریم سراغ بعدی
-                        <span>←</span>
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =====================================
-             PAGE 04
-             FLOWERS
-        ====================================== -->
-
-        <section class="page" id="page4">
-
-            <div class="page-index">
-                03 / 05
-            </div>
-
-
-            <div class="flower-layout">
-
-
-                <!-- TEXT -->
-
-                <div class="flower-copy page-copy">
-
-                    <span class="eyebrow">
-                        THIRD THING
-                    </span>
-
-                    <h2>
-                        برای مهربونی‌ای
-                        <br>
-                        که همیشه <i>دیده نمی‌شه.</i>
-                    </h2>
-
-                    <p>
-                        تو همیشه منطقی‌ترین آدمِ اتاق بودی.
-                        <br><br>
-
-                        تا جایی که می‌شد،
-                        احساسات رو از تصمیم‌هات کنار می‌گذاشتی.
-                        <br><br>
-
-                        اما عجیب‌ترین قسمتت همین بود:
-                        وقتی کسی واقعاً برات مهم می‌شد،
-                        دیگه هیچ‌کدوم از اون حساب‌وکتاب‌ها
-                        مثل قبل کار نمی‌کردن.
-                        <br><br>
-
-                        مهربون بودی.
-                        زودرنج بودی.
-                        و برای آدم‌هایی که دوستشون داشتی،
-                        بیشتر از چیزی که نشون می‌دادی
-                        ارزش قائل بودی.
-                        <br><br>
-
-                        فکر کنم همین تضاد،
-                        یکی از قشنگ‌ترین چیزهای تو بود.
-                    </p>
-
-                    <button class="next-btn" onclick="nextPage()">
-                        برگ بعدی
-                        <span>←</span>
-                    </button>
-
-                </div>
-
-
-
-                <!-- FLOWERS -->
-
-                <div class="flower-garden">
-
-                    <div class="stem stem1"></div>
-                    <div class="stem stem2"></div>
-                    <div class="stem stem3"></div>
-
-                    <div class="leaf leaf1"></div>
-                    <div class="leaf leaf2"></div>
-                    <div class="leaf leaf3"></div>
-                    <div class="leaf leaf4"></div>
-
-                    <div class="flower flower1">
-                        <i></i>
-                        <i></i>
-                        <i></i>
-                        <i></i>
-                        <i></i>
-                    </div>
-
-                    <div class="flower flower2">
-                        <i></i>
-                        <i></i>
-                        <i></i>
-                        <i></i>
-                        <i></i>
-                    </div>
-
-                    <div class="flower flower3">
-                        <i></i>
-                        <i></i>
-                        <i></i>
-                        <i></i>
-                        <i></i>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =====================================
-             PAGE 05
-             WRITING / MEMORY
-        ====================================== -->
-
-        <section class="page paper-page" id="page5">
-
-            <div class="page-index dark-index">
-                04 / 05
-            </div>
-
-
-            <div class="paper">
-
-                <div class="paper-header">
-
-                    <span>
-                        FOR AKARI
-                    </span>
-
-                    <span>
-                        ONE PAGE ONLY
-                    </span>
-
-                </div>
-
-
-                <div class="paper-inner">
-
-                    <span class="paper-label">
-                        برای کسی که می‌نویسه
-                    </span>
-
-
-                    <h2>
-                        و یک صفحه،
-                        <br>
-                        برای چیزی که <i>تمام شد.</i>
-                    </h2>
-
-
-                    <p>
-                        ما همیشه یک جور عجیبی
-                        مثل سگ و گربه به هم می‌پریدیم.
-                    </p>
-
-
-                    <p>
-                        ولی عجیب‌تر این بود که
-                        خیلی از شب‌ها هم تا صبح می‌خندیدیم،
-                        با ذوق برای هم از روزهامون می‌گفتیم،
-                        و چیزهایی رو تعریف می‌کردیم
-                        که شاید برای هیچ‌کس دیگه‌ای
-                        تعریف نمی‌کردیم.
-                    </p>
-
-
-                    <p>
-                        قهر کردیم.
-                        آشتی کردیم.
-                        دوباره بحث کردیم.
-                        دوباره خندیدیم.
-                    </p>
-
-
-                    <p>
-                        تا این بار،
-                        هیچ‌کدوم کوتاه نیومدیم.
-                        <br>
-                        و تمام شد.
-                    </p>
-
-
-                    <p>
-                        شاید واقعاً تمام شده باشد.
-                        من نمی‌دونم.
-                    </p>
-
-
-                    <p>
-                        ولی اگر چیزی از تو یاد گرفته باشم،
-                        این بوده که هر آدمی،
-                        و هر رابطه‌ای،
-                        در هر شکلی،
-                        یک پایانی دارد.
-                    </p>
-
-
-                    <p>
-                        و پایان،
-                        همیشه به این معنی نیست
-                        که چیزی که قبلش بوده،
-                        بی‌ارزش بوده.
-                    </p>
-
-
-                    <div class="paper-line"></div>
-
-
-                    <p class="small-paper-text">
-                        برای همین،
-                        این دوری دلیل نمی‌شد تولدت رو تبریک نگم.
-                    </p>
-
-
-                    <button class="paper-btn" onclick="nextPage()">
-                        آخرین صفحه
-                    </button>
-
-                </div>
-
-
-                <div class="paper-mark">
-                    ✦
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =====================================
-             PAGE 06
-             FINAL
-        ====================================== -->
-
-        <section class="page final-page" id="page6">
-
-            <div class="final-orbit orbit-one"></div>
-
-            <div class="final-orbit orbit-two"></div>
-
-
-            <div class="final-content">
-
-                <span class="final-label">
-                    SAME BEGINNING · DIFFERENT DESTINATIONS
-                </span>
-
-
-                <h1>
-                    تولدت
-                    <br>
-                    <i>مبارک.</i>
-                </h1>
-
-
-                <div class="final-divider"></div>
-
-
-                <div class="final-gift">
-                    یک شروع مشترک،
-                    <br>
-                    برای دو مسیر متفاوت.
-                </div>
-
-
-                <p class="final-note">
-                    برای آکاری،
-                    <br>
-                    در روزی که هر دومون
-                    <br>
-                    از یک نقطه شروع کردیم.
+                <div class="intro-dot"></div>
+
+                <p class="intro-small">
+                    یک آرشیو کوچک از چیزهایی
+                    که نباید گم می‌شدند.
                 </p>
 
+                <h1>
+                    آرشیو
+                    <i>آکاری</i>
+                </h1>
+
+                <p class="intro-description">
+                    اینجا چیزی برای خواندن نیست.
+                    <br>
+                    باید پیداش کنی.
+                </p>
 
                 <button
-                    class="restart-btn"
-                    onclick="restart()"
-                    aria-label="بازگشت به ابتدا">
-                    ↻
+                    class="primary-button"
+                    onclick="startArchive()"
+                >
+                    باز کردن کشو
+                    <span>←</span>
                 </button>
 
             </div>
 
         </section>
 
+
+
+        <!-- =================================
+             01 — NAME
+        ================================== -->
+
+        <section
+            class="page"
+            id="page1"
+        >
+
+            <span class="page-number">
+                01 / 06
+            </span>
+
+
+            <div class="name-game">
+
+                <div class="game-intro">
+
+                    <span class="eyebrow">
+                        پرونده‌ی اول
+                    </span>
+
+                    <h2>
+                        بعضی اسم‌ها
+                        <br>
+                        <i>برای صدا زدن نیستند.</i>
+                    </h2>
+
+                    <p>
+                        اسم درست را پیدا کن.
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="name-field"
+                    id="nameField"
+                >
+
+                    <button>مریم</button>
+                    <button>سارا</button>
+                    <button>مهسا</button>
+                    <button>نیلوفر</button>
+                    <button>مهدیه</button>
+                    <button>نازنین</button>
+                    <button>هلیا</button>
+                    <button>الهام</button>
+
+                </div>
+
+
+                <div
+                    class="game-message"
+                    id="nameMessage"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             02 — NIGHT
+        ================================== -->
+
+        <section
+            class="page"
+            id="page2"
+        >
+
+            <span class="page-number">
+                02 / 06
+            </span>
+
+
+            <div class="night-game">
+
+                <div class="game-intro">
+
+                    <span class="eyebrow">
+                        پرونده‌ی دوم
+                    </span>
+
+                    <h2>
+                        بعضی شب‌ها
+                        <br>
+                        <i>تمام نمی‌شوند.</i>
+                    </h2>
+
+                </div>
+
+
+                <div
+                    class="night-room"
+                    id="nightRoom"
+                >
+
+                    <div class="window">
+
+                        <div class="moon"></div>
+
+                    </div>
+
+
+                    <div class="lamp">
+
+                        <div class="lamp-light"></div>
+
+                        <div class="lamp-shade"></div>
+
+                        <div class="lamp-base"></div>
+
+                    </div>
+
+
+                    <div class="clock">
+                        02:17
+                    </div>
+
+
+                    <p class="night-hint">
+                        چراغ را روشن نگه دار.
+                    </p>
+
+                </div>
+
+
+                <p
+                    class="game-message"
+                    id="nightMessage"
+                ></p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             03 — CHOCOLATE MILK
+        ================================== -->
+
+        <section
+            class="page"
+            id="page3"
+        >
+
+            <span class="page-number">
+                03 / 06
+            </span>
+
+
+            <div class="milk-game">
+
+                <div class="game-intro">
+
+                    <span class="eyebrow">
+                        پرونده‌ی سوم
+                    </span>
+
+                    <h2>
+                        دستور ساخت
+                        <br>
+                        <i>یک شب خوب</i>
+                    </h2>
+
+                    <p>
+                        سه چیز را درست انتخاب کن.
+                    </p>
+
+                </div>
+
+
+                <div class="milk-table">
+
+                    <div
+                        class="milk-glass"
+                        id="milkGlass"
+                    >
+
+                        <div class="milk-liquid"></div>
+
+                        <div class="glass-label">
+                            AKARI
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="ingredients"
+                        id="ingredients"
+                    >
+
+                        <button
+                            data-ingredient="milk"
+                        >
+                            شیر
+                        </button>
+
+                        <button
+                            data-ingredient="cocoa"
+                        >
+                            کاکائو
+                        </button>
+
+                        <button
+                            data-ingredient="ice"
+                        >
+                            یخ
+                        </button>
+
+                        <button
+                            data-ingredient="laugh"
+                        >
+                            خنده
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <p
+                    class="game-message"
+                    id="milkMessage"
+                ></p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             04 — FLOWER
+        ================================== -->
+
+        <section
+            class="page"
+            id="page4"
+        >
+
+            <span class="page-number">
+                04 / 06
+            </span>
+
+
+            <div class="flower-game">
+
+                <div class="game-intro">
+
+                    <span class="eyebrow">
+                        پرونده‌ی چهارم
+                    </span>
+
+                    <h2>
+                        سبک‌ترش کن.
+                        <br>
+                        <i>نه کوچک‌تر.</i>
+                    </h2>
+
+                    <p>
+                        چیزهایی را که لازم نیست
+                        از روی گل بردار.
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="flower-stage"
+                    id="flowerStage"
+                >
+
+                    <div class="flower-stem"></div>
+
+                    <div class="flower-head">
+
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <b></b>
+
+                    </div>
+
+
+                    <div
+                        class="flower-weight weight-1"
+                        data-weight="pride"
+                    >
+                        غرور
+                    </div>
+
+                    <div
+                        class="flower-weight weight-2"
+                        data-weight="hurt"
+                    >
+                        دلخوری
+                    </div>
+
+                    <div
+                        class="flower-weight weight-3"
+                        data-weight="waiting"
+                    >
+                        انتظار
+                    </div>
+
+                    <div
+                        class="flower-weight weight-4"
+                        data-weight="anger"
+                    >
+                        قهر
+                    </div>
+
+                </div>
+
+
+                <p
+                    class="game-message"
+                    id="flowerMessage"
+                ></p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             05 — DOG & CAT
+        ================================== -->
+
+        <section
+            class="page"
+            id="page5"
+        >
+
+            <span class="page-number">
+                05 / 06
+            </span>
+
+
+            <div class="us-game">
+
+                <div class="game-intro">
+
+                    <span class="eyebrow">
+                        پرونده‌ی پنجم
+                    </span>
+
+                    <h2>
+                        مثل همیشه.
+                    </h2>
+
+                    <p>
+                        این دوتا را نزدیک کن.
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="animal-stage"
+                    id="animalStage"
+                >
+
+                    <div
+                        class="animal dog"
+                        id="dog"
+                    >
+
+                        <div class="dog-ear"></div>
+                        <div class="dog-face"></div>
+
+                    </div>
+
+
+                    <div
+                        class="animal cat-small"
+                        id="cat"
+                    >
+
+                        <div class="cat-ear left"></div>
+                        <div class="cat-ear right"></div>
+                        <div class="cat-face"></div>
+
+                    </div>
+
+                </div>
+
+
+                <p
+                    class="game-message"
+                    id="usMessage"
+                ></p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             06 — WRITING
+        ================================== -->
+
+        <section
+            class="page"
+            id="page6"
+        >
+
+            <span class="page-number">
+                06 / 06
+            </span>
+
+
+            <div class="writing-game">
+
+                <div class="game-intro">
+
+                    <span class="eyebrow">
+                        پرونده‌ی آخر
+                    </span>
+
+                    <h2>
+                        یک جمله
+                        <br>
+                        <i>باقی مانده.</i>
+                    </h2>
+
+                    <p>
+                        سه کلمه انتخاب کن.
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="word-pool"
+                    id="wordPool"
+                >
+
+                    <button>خاطره</button>
+                    <button>شب</button>
+                    <button>خنده</button>
+                    <button>آدم</button>
+                    <button>پایان</button>
+                    <button>ماندن</button>
+                    <button>آکاری</button>
+
+                </div>
+
+
+                <div
+                    class="sentence"
+                    id="sentence"
+                >
+                    <span>
+                        هنوز چیزی نوشته نشده.
+                    </span>
+                </div>
+
+
+                <button
+                    class="primary-button hidden"
+                    id="openDrawer"
+                >
+                    آخرین کشو
+                    <span>←</span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             FINAL DRAWER
+        ================================== -->
+
+        <section
+            class="page"
+            id="page7"
+        >
+
+            <div class="final-drawer">
+
+                <span class="eyebrow">
+                    آخرین کشو
+                </span>
+
+
+                <div
+                    class="calendar"
+                    id="calendar"
+                >
+
+                    <div class="calendar-top">
+                        AUG / 20XX
+                    </div>
+
+                    <div class="calendar-date">
+                        <span>روز</span>
+                        <strong>?</strong>
+                    </div>
+
+                    <button
+                        onclick="openBirthday()"
+                    >
+                        باز کردن
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="birthday hidden"
+                    id="birthday"
+                >
+
+                    <span>
+                        یک شروع مشترک
+                    </span>
+
+                    <h1>
+                        تولدت
+                        <i>مبارک.</i>
+                    </h1>
+
+                    <div class="final-line"></div>
+
+                    <p>
+                        برای آکاری،
+                        <br>
+                        در روزی که هر دومون
+                        <br>
+                        از یک نقطه شروع کردیم.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
     </main>
 
 
 
-    <!-- =====================================
-         NAVIGATION
-    ====================================== -->
-
-    <div class="navigation">
+    <nav class="navigation">
 
         <span id="currentPage">
-            01
+            00
         </span>
 
         <div class="nav-line">
@@ -592,10 +647,10 @@
         </div>
 
         <span>
-            06
+            AKARI
         </span>
 
-    </div>
+    </nav>
 
 
 
