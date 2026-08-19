@@ -4,103 +4,145 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>یک روز خاص</title>
+    <title>برای یک روز خاص</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@400;500&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Ambient background -->
-    <div class="noise"></div>
-    <div class="glow glow-one"></div>
-    <div class="glow glow-two"></div>
-
-    <!-- =========================
-         INTRO
-    ========================== -->
+    <!-- فضای پس‌زمینه -->
+    <div class="grain"></div>
+    <div class="ambient ambient-red"></div>
+    <div class="ambient ambient-green"></div>
 
     <main id="app">
 
-        <section class="screen active" id="screen-1">
+        <!-- =========================
+             01 — INTRO
+        ========================== -->
 
-            <div class="intro-decoration">
+        <section class="page active" id="page1">
+
+            <div class="intro-symbol">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
 
-            <p class="eyebrow">A SMALL THING FOR A SPECIAL DAY</p>
+            <div class="intro-label">
+                A LITTLE SOMETHING
+            </div>
 
-            <h1>
-                یک روز،
+            <h1 class="hero-title">
+                یک روز
                 <br>
-                <em>دو تولد.</em>
+                <i>خاص.</i>
             </h1>
 
-            <p class="intro-text">
-                بعضی تاریخ‌ها معمولی نیستن.
+            <p class="hero-text">
+                بعضی تاریخ‌ها فقط یک تاریخ نیستن.
                 <br>
-                مثلاً تاریخی که تو و من،
-                هر دو برای اولین بار به دنیا اومدیم.
+                بعضیاشون یه داستان کوچیک با خودشون دارن.
             </p>
 
-            <button class="main-button" onclick="nextScreen()">
-                شروع کنیم
-                <span>↗</span>
+            <button class="enter-btn" onclick="nextPage()">
+                <span>وارد شو</span>
+                <b>↗</b>
             </button>
 
-            <div class="date-mark">
-                SAME DAY<br>
-                DIFFERENT STORIES
+            <div class="birth-note">
+                SAME DATE
+                <br>
+                TWO STORIES
             </div>
 
         </section>
 
 
         <!-- =========================
-             CAT
+             02 — CAT
         ========================== -->
 
-        <section class="screen" id="screen-2">
+        <section class="page" id="page2">
 
-            <div class="section-number">01</div>
+            <div class="page-index">01 / 05</div>
 
-            <div class="content-grid">
+            <div class="cat-layout">
 
-                <div class="visual-card cat-card">
-                    <div class="card-overlay"></div>
+                <div class="cat-illustration">
 
-                    <img src="assets/cat.jpg" alt="گربه">
+                    <div class="cat-shadow"></div>
 
-                    <span class="image-label">CAT / 01</span>
+                    <div class="cat">
+                        <div class="ear ear-left"></div>
+                        <div class="ear ear-right"></div>
+
+                        <div class="cat-head">
+
+                            <div class="eye eye-left">
+                                <span></span>
+                            </div>
+
+                            <div class="eye eye-right">
+                                <span></span>
+                            </div>
+
+                            <div class="cat-nose"></div>
+
+                            <div class="whiskers whiskers-left">
+                                <i></i>
+                                <i></i>
+                                <i></i>
+                            </div>
+
+                            <div class="whiskers whiskers-right">
+                                <i></i>
+                                <i></i>
+                                <i></i>
+                            </div>
+
+                        </div>
+
+                        <div class="cat-body"></div>
+
+                        <div class="cat-tail"></div>
+
+                    </div>
+
+                    <div class="cat-caption">
+                        SOMEONE IS WATCHING
+                    </div>
+
                 </div>
 
-                <div class="text-content">
 
-                    <span class="small-title">اول از همه...</span>
+                <div class="page-copy">
+
+                    <span class="eyebrow">
+                        FIRST THING
+                    </span>
 
                     <h2>
-                        احتمالاً
+                        خب...
                         <br>
-                        یه گربه
-                        <em>لازم داریم.</em>
+                        <i>گربه</i>
+                        رو که نمی‌شد حذف کرد.
                     </h2>
 
                     <p>
-                        چون اگر قرار باشه چیزی از علایق تو
-                        اینجا باشه، حذف گربه تقریباً یک جنایت
-                        فرهنگی محسوب می‌شه.
+                        چون ظاهراً گربه‌ها در بعضی زندگی‌ها
+                        از آدم‌ها هم نقش پررنگ‌تری دارن.
                     </p>
 
-                    <button class="text-button" onclick="nextScreen()">
+                    <button class="next-btn" onclick="nextPage()">
                         ادامه
-                        <span>→</span>
+                        <span>←</span>
                     </button>
 
                 </div>
@@ -111,48 +153,80 @@
 
 
         <!-- =========================
-             CHOCOLATE MILK
+             03 — CHOCOLATE MILK
         ========================== -->
 
-        <section class="screen" id="screen-3">
+        <section class="page" id="page3">
 
-            <div class="section-number">02</div>
+            <div class="page-index">02 / 05</div>
 
-            <div class="chocolate-scene">
+            <div class="chocolate-layout">
 
-                <div class="chocolate-bottle">
-                    <div class="bottle-cap"></div>
+                <div class="bottle-scene">
 
-                    <div class="bottle-label">
-                        <small>PRIVATE RECIPE</small>
-                        <strong>CHOCOLATE</strong>
-                        <span>MILK</span>
+                    <div class="bottle-glow"></div>
+
+                    <div class="milk-bottle">
+
+                        <div class="bottle-cap"></div>
+
+                        <div class="bottle-neck"></div>
+
+                        <div class="bottle-body">
+
+                            <div class="bottle-label">
+
+                                <small>
+                                    SPECIAL EDITION
+                                </small>
+
+                                <strong>
+                                    CHOCO
+                                </strong>
+
+                                <span>
+                                    MILK
+                                </span>
+
+                                <div class="label-line"></div>
+
+                                <em>
+                                    for a good day
+                                </em>
+
+                            </div>
+
+                        </div>
+
                     </div>
+
                 </div>
 
-                <div class="chocolate-shadow"></div>
 
-            </div>
+                <div class="page-copy chocolate-copy">
 
-            <div class="center-copy">
+                    <span class="eyebrow">
+                        SECOND THING
+                    </span>
 
-                <span class="small-title">برای یک استراحت کوتاه</span>
+                    <h2>
+                        شیرکاکائو.
+                        <br>
+                        چون بعضی چیزا
+                        <i>دلیل نمی‌خوان.</i>
+                    </h2>
 
-                <h2>
-                    شیرکاکائو،
-                    <br>
-                    چون <em>دلایل بیشتری لازم نیست.</em>
-                </h2>
+                    <p>
+                        یه چیز ساده برای یه روز ساده،
+                        البته با یک مناسبت نسبتاً مهم.
+                    </p>
 
-                <p>
-                    بعضی چیزها احتیاج به توضیح ندارن.
-                    شیرکاکائو هم یکی از اون‌هاست.
-                </p>
+                    <button class="next-btn" onclick="nextPage()">
+                        ادامه
+                        <span>←</span>
+                    </button>
 
-                <button class="text-button" onclick="nextScreen()">
-                    ادامه
-                    <span>→</span>
-                </button>
+                </div>
 
             </div>
 
@@ -160,57 +234,75 @@
 
 
         <!-- =========================
-             FLOWERS
+             04 — FLOWERS
         ========================== -->
 
-        <section class="screen" id="screen-4">
+        <section class="page" id="page4">
 
-            <div class="section-number">03</div>
+            <div class="page-index">03 / 05</div>
 
             <div class="flower-layout">
 
-                <div class="flower-copy">
+                <div class="flower-copy page-copy">
 
-                    <span class="small-title">یک چیز سبز، یک چیز زرشکی</span>
+                    <span class="eyebrow">
+                        THIRD THING
+                    </span>
 
                     <h2>
-                        بعضی گل‌ها
+                        چند تا گل
                         <br>
-                        برای <em>گلدون نیستن.</em>
+                        برای یک آدم
+                        <i>خاص.</i>
                     </h2>
 
                     <p>
-                        بعضی‌هاشون فقط باید جایی باشن
-                        که وقتی نگاهشون می‌کنی،
-                        یادت بیاد یک نفر به فکر تو بوده.
+                        نه برای اینکه گل همیشه نماد چیز خاصی باشه.
+                        فقط چون بعضی آدم‌ها باید یک گوشه از روزشون
+                        یه چیز قشنگ داشته باشن.
                     </p>
 
-                    <button class="text-button" onclick="nextScreen()">
+                    <button class="next-btn" onclick="nextPage()">
                         برگ بعدی
-                        <span>→</span>
+                        <span>←</span>
                     </button>
 
                 </div>
 
-                <div class="flower-art">
 
-                    <div class="stem stem-one"></div>
-                    <div class="stem stem-two"></div>
+                <div class="flower-garden">
 
-                    <div class="flower flower-one">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                    <div class="stem stem1"></div>
+                    <div class="stem stem2"></div>
+                    <div class="stem stem3"></div>
+
+                    <div class="leaf leaf1"></div>
+                    <div class="leaf leaf2"></div>
+                    <div class="leaf leaf3"></div>
+                    <div class="leaf leaf4"></div>
+
+                    <div class="flower flower1">
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
                     </div>
 
-                    <div class="flower flower-two">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                    <div class="flower flower2">
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                    </div>
+
+                    <div class="flower flower3">
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
                     </div>
 
                 </div>
@@ -221,49 +313,63 @@
 
 
         <!-- =========================
-             WRITING
+             05 — WRITING
         ========================== -->
 
-        <section class="screen paper-screen" id="screen-5">
+        <section class="page paper-page" id="page5">
 
-            <div class="section-number">04</div>
+            <div class="page-index dark-index">
+                04 / 05
+            </div>
 
             <div class="paper">
 
-                <div class="paper-top">
+                <div class="paper-header">
                     <span>20 / 08</span>
-                    <span>FOR YOU</span>
+                    <span>ONE PAGE ONLY</span>
                 </div>
 
-                <div class="paper-content">
+                <div class="paper-inner">
 
-                    <span class="hand-label">یک صفحه از این روز</span>
+                    <span class="paper-label">
+                        برای کسی که می‌نویسه
+                    </span>
 
                     <h2>
-                        برای کسی که
+                        بعضی حرف‌ها
                         <br>
-                        <em>می‌نویسه...</em>
+                        باید جایی
+                        <i>نوشته بشن.</i>
                     </h2>
 
                     <p>
-                        شاید قشنگ‌ترین چیز درباره‌ی نوشتن
-                        اینه که آدم می‌تونه چیزی رو که توی
-                        ذهنشه، برای چند لحظه نگه داره.
+                        شاید آدم همیشه نتونه دقیقاً بگه
+                        یک نفر چقدر براش مهم بوده.
                     </p>
 
                     <p>
-                        این صفحه هم فقط برای همینه.
-                        برای اینکه این روز،
-                        یک جایی ثبت شده باشه.
+                        ولی می‌تونه یک روز،
+                        یک صفحه،
+                        یا حتی چند کلمه رو
+                        برای اون آدم کنار بذاره.
                     </p>
 
-                    <button class="paper-button" onclick="nextScreen()">
-                        صفحه‌ی آخر
+                    <div class="paper-line"></div>
+
+                    <p class="small-paper-text">
+                        این صفحه برای توئه.
+                        نه بیشتر، نه کمتر.
+                    </p>
+
+                    <button class="paper-btn" onclick="nextPage()">
+                        صفحه آخر
                     </button>
 
                 </div>
 
-                <div class="paper-flower">✦</div>
+                <div class="paper-mark">
+                    ✦
+                </div>
 
             </div>
 
@@ -271,39 +377,40 @@
 
 
         <!-- =========================
-             FINAL
+             06 — FINAL
         ========================== -->
 
-        <section class="screen final-screen" id="screen-6">
+        <section class="page final-page" id="page6">
 
-            <div class="final-background"></div>
+            <div class="final-orbit orbit-one"></div>
+            <div class="final-orbit orbit-two"></div>
 
             <div class="final-content">
 
-                <span class="final-small">
-                    SAME BIRTHDAY · DIFFERENT STORY
+                <span class="final-label">
+                    SAME DAY · DIFFERENT STORIES
                 </span>
 
                 <h1>
                     تولدت
                     <br>
-                    <em>مبارک.</em>
+                    <i>مبارک.</i>
                 </h1>
 
-                <div class="final-line"></div>
+                <div class="final-divider"></div>
 
-                <p class="final-message">
+                <div class="final-gift">
                     خدا بود.
-                </p>
+                </div>
 
-                <p class="signature">
+                <p class="final-note">
                     برای یک آدم خاص،
                     <br>
                     از یک تاریخ مشترک.
                 </p>
 
-                <button class="restart-button" onclick="restart()">
-                    ↻ دوباره
+                <button class="restart-btn" onclick="restart()">
+                    ↻
                 </button>
 
             </div>
@@ -313,17 +420,28 @@
     </main>
 
 
-    <!-- Progress -->
-    <div class="progress">
-        <span class="progress-current">01</span>
-        <div class="progress-line">
-            <div id="progress-bar"></div>
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <div class="navigation">
+
+        <span id="currentPage">
+            01
+        </span>
+
+        <div class="nav-line">
+            <div id="navProgress"></div>
         </div>
-        <span>06</span>
+
+        <span>
+            06
+        </span>
+
     </div>
 
 
     <script src="script.js"></script>
 
 </body>
-  </html>
+    </html>
