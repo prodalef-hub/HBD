@@ -1,1 +1,1450 @@
+/* =========================================================
+   AKARI — PERSONAL ARCHIVE
+   MOBILE FIRST
+   ========================================================= */
 
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
+
+
+/* =========================================================
+   VARIABLES
+   ========================================================= */
+
+:root {
+
+    --black: #080908;
+    --black-soft: #101210;
+
+    --wine: #641f32;
+    --wine-light: #8b354d;
+
+    --green: #183b30;
+    --green-light: #285b49;
+
+    --cream: #e9dfce;
+    --cream-soft: #bdb3a3;
+
+    --line: rgba(233, 223, 206, 0.13);
+
+    --glass: rgba(255, 255, 255, 0.035);
+
+    --radius: 22px;
+
+    --transition:
+        700ms cubic-bezier(.22, .61, .36, 1);
+
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    width: 100%;
+    min-height: 100%;
+    background: var(--black);
+    scroll-behavior: smooth;
+}
+
+body {
+
+    width: 100%;
+    min-height: 100vh;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(100, 31, 50, .18),
+            transparent 34%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(24, 59, 48, .17),
+            transparent 35%
+        ),
+        var(--black);
+
+    color: var(--cream);
+
+    font-family:
+        "Vazirmatn",
+        Tahoma,
+        sans-serif;
+
+    -webkit-font-smoothing: antialiased;
+}
+
+button {
+    font: inherit;
+    color: inherit;
+}
+
+button:focus-visible {
+    outline: 1px solid var(--cream);
+    outline-offset: 4px;
+}
+
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+.site-noise {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 20;
+
+    pointer-events: none;
+
+    opacity: .035;
+
+    background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+}
+
+.ambient {
+
+    position: fixed;
+
+    width: 280px;
+    height: 280px;
+
+    border-radius: 50%;
+
+    filter: blur(90px);
+
+    pointer-events: none;
+
+    opacity: .23;
+}
+
+.ambient-wine {
+
+    top: -120px;
+    right: -100px;
+
+    background: var(--wine);
+}
+
+.ambient-green {
+
+    bottom: -130px;
+    left: -110px;
+
+    background: var(--green);
+}
+
+
+/* =========================================================
+   APP / PAGES
+   ========================================================= */
+
+#app {
+
+    position: relative;
+
+    width: 100%;
+    min-height: 100svh;
+}
+
+.page {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    min-height: 100svh;
+
+    padding:
+        max(24px, env(safe-area-inset-top))
+        20px
+        max(80px, env(safe-area-inset-bottom));
+
+    overflow-y: auto;
+
+    display: flex;
+
+    justify-content: center;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform:
+        translateY(18px)
+        scale(.985);
+
+    transition:
+        opacity var(--transition),
+        transform var(--transition),
+        visibility var(--transition);
+
+    pointer-events: none;
+}
+
+.page.active {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform:
+        translateY(0)
+        scale(1);
+
+    pointer-events: auto;
+}
+
+
+/* =========================================================
+   INTRO
+   ========================================================= */
+
+.page-intro {
+
+    align-items: center;
+
+    text-align: right;
+}
+
+.intro-wrap {
+
+    width: min(100%, 440px);
+
+    min-height: calc(100svh - 100px);
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    padding:
+        12px
+        0
+        12px;
+}
+
+.intro-meta,
+.intro-footer,
+.page-meta {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    color: var(--cream-soft);
+
+    font-size: 9px;
+
+    letter-spacing: .16em;
+
+    text-transform: uppercase;
+}
+
+.intro-meta {
+
+    direction: ltr;
+
+    opacity: .65;
+}
+
+
+/* =========================================================
+   ARCHIVE OBJECT
+   ========================================================= */
+
+.archive-object {
+
+    display: flex;
+
+    justify-content: center;
+
+    margin:
+        18px
+        0
+        22px;
+}
+
+.object-frame {
+
+    position: relative;
+
+    width: min(78vw, 310px);
+
+    aspect-ratio: .78;
+
+    border: 1px solid var(--line);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.055),
+            rgba(255,255,255,.015)
+        );
+
+    box-shadow:
+        0 35px 90px rgba(0,0,0,.45),
+        inset 0 0 50px rgba(255,255,255,.015);
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    padding: 18px;
+
+    overflow: hidden;
+}
+
+.object-frame::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 170px;
+    height: 170px;
+
+    border-radius: 50%;
+
+    right: -65px;
+    top: -55px;
+
+    background: var(--wine);
+
+    filter: blur(45px);
+
+    opacity: .28;
+}
+
+.object-frame::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+
+    left: -70px;
+    bottom: -60px;
+
+    background: var(--green);
+
+    filter: blur(45px);
+
+    opacity: .3;
+}
+
+.object-topline {
+
+    position: relative;
+
+    z-index: 2;
+
+    direction: ltr;
+
+    font-size: 8px;
+
+    letter-spacing: .25em;
+
+    color: var(--cream-soft);
+
+    opacity: .7;
+}
+
+
+/* =========================================================
+   CORNERS
+   ========================================================= */
+
+.corner {
+
+    position: absolute;
+
+    width: 18px;
+    height: 18px;
+
+    z-index: 4;
+}
+
+.corner::before,
+.corner::after {
+
+    content: "";
+
+    position: absolute;
+
+    background: var(--cream);
+
+    opacity: .45;
+}
+
+.corner::before {
+
+    width: 1px;
+    height: 100%;
+}
+
+.corner::after {
+
+    width: 100%;
+    height: 1px;
+}
+
+.corner-tl {
+
+    top: 10px;
+    left: 10px;
+}
+
+.corner-tr {
+
+    top: 10px;
+    right: 10px;
+
+    transform: rotate(90deg);
+}
+
+.corner-bl {
+
+    bottom: 10px;
+    left: 10px;
+
+    transform: rotate(-90deg);
+}
+
+.corner-br {
+
+    bottom: 10px;
+    right: 10px;
+
+    transform: rotate(180deg);
+}
+
+
+/* =========================================================
+   MINIMAL CAT
+   ========================================================= */
+
+.cat {
+
+    position: relative;
+
+    z-index: 2;
+
+    align-self: center;
+
+    width: 112px;
+    height: 96px;
+
+    margin-top: 10px;
+}
+
+.cat-face {
+
+    position: absolute;
+
+    width: 82px;
+    height: 70px;
+
+    left: 15px;
+    top: 20px;
+
+    border-radius:
+        44%
+        44%
+        46%
+        46%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #242521,
+            #11120f
+        );
+
+    border: 1px solid rgba(233,223,206,.13);
+
+    box-shadow:
+        0 18px 30px rgba(0,0,0,.35);
+}
+
+.cat-ear {
+
+    position: absolute;
+
+    top: 8px;
+
+    width: 30px;
+    height: 38px;
+
+    background: #1b1d19;
+
+    border: 1px solid rgba(233,223,206,.12);
+
+    transform: rotate(45deg);
+
+    z-index: -1;
+}
+
+.cat-ear-left {
+    left: 13px;
+}
+
+.cat-ear-right {
+    right: 13px;
+    transform: rotate(45deg);
+}
+
+.cat-eye {
+
+    position: absolute;
+
+    top: 30px;
+
+    width: 5px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: var(--cream);
+
+    opacity: .85;
+}
+
+.cat-eye-left {
+    left: 24px;
+}
+
+.cat-eye-right {
+    right: 24px;
+}
+
+.cat-nose {
+
+    position: absolute;
+
+    width: 4px;
+    height: 4px;
+
+    left: 39px;
+    top: 43px;
+
+    border-radius: 50%;
+
+    background: var(--wine-light);
+}
+
+
+/* =========================================================
+   OBJECT CAPTION
+   ========================================================= */
+
+.object-caption {
+
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.object-caption span {
+
+    font-size: 8px;
+
+    letter-spacing: .15em;
+
+    color: var(--cream-soft);
+}
+
+.object-caption strong {
+
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    font-weight: 400;
+
+    font-size: 24px;
+
+    line-height: 1.45;
+
+    color: var(--cream);
+}
+
+
+/* =========================================================
+   INTRO COPY
+   ========================================================= */
+
+.intro-copy {
+
+    margin-top: auto;
+}
+
+.section-label {
+
+    display: block;
+
+    margin-bottom: 9px;
+
+    color: var(--wine-light);
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    letter-spacing: .18em;
+
+    text-transform: uppercase;
+}
+
+.intro-copy h1 {
+
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    font-size: clamp(44px, 14vw, 64px);
+
+    font-weight: 400;
+
+    line-height: 1;
+
+    letter-spacing: -.04em;
+}
+
+.intro-copy h1 em,
+.game-heading h2 em,
+.final-message h1 em {
+
+    color: var(--wine-light);
+
+    font-style: italic;
+}
+
+.intro-copy p {
+
+    margin-top: 13px;
+
+    color: var(--cream-soft);
+
+    font-size: 12px;
+
+    line-height: 2;
+}
+
+
+/* =========================================================
+   BUTTON
+   ========================================================= */
+
+.start-button {
+
+    position: relative;
+
+    width: 100%;
+
+    margin-top: 25px;
+
+    padding: 17px 18px;
+
+    border: 1px solid rgba(233,223,206,.18);
+
+    border-radius: 100px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(100,31,50,.55),
+            rgba(24,59,48,.5)
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+        transform 300ms ease,
+        border-color 300ms ease,
+        background 300ms ease;
+}
+
+.start-button::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            110deg,
+            transparent 20%,
+            rgba(255,255,255,.1),
+            transparent 80%
+        );
+
+    transform: translateX(-100%);
+
+    transition: transform 700ms ease;
+}
+
+.start-button:hover::before,
+.start-button:active::before {
+
+    transform: translateX(100%);
+}
+
+.start-button:active {
+
+    transform: scale(.97);
+}
+
+.start-button span {
+
+    font-size: 13px;
+
+    font-weight: 500;
+}
+
+.start-button b {
+
+    width: 31px;
+    height: 31px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: rgba(233,223,206,.08);
+
+    font-size: 16px;
+
+    font-weight: 400;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.intro-footer {
+
+    margin-top: 18px;
+
+    opacity: .45;
+}
+
+
+/* =========================================================
+   GAME PAGE
+   ========================================================= */
+
+.game-page {
+
+    width: min(100%, 480px);
+
+    min-height: calc(100svh - 100px);
+
+    padding-top: 8px;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.page-meta {
+
+    direction: ltr;
+
+    padding-bottom: 25px;
+
+    border-bottom: 1px solid var(--line);
+}
+
+.game-heading {
+
+    padding-top: 38px;
+}
+
+.game-heading h2 {
+
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    font-size: clamp(36px, 10vw, 52px);
+
+    font-weight: 400;
+
+    line-height: 1.15;
+
+    letter-spacing: -.035em;
+}
+
+.game-heading p {
+
+    margin-top: 12px;
+
+    max-width: 320px;
+
+    color: var(--cream-soft);
+
+    font-size: 12px;
+
+    line-height: 1.9;
+}
+
+
+/* =========================================================
+   GAME RESPONSE
+   ========================================================= */
+
+.game-response {
+
+    min-height: 82px;
+
+    margin-top: auto;
+
+    padding-top: 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    opacity: 0;
+
+    transform: translateY(10px);
+
+    transition:
+        opacity 500ms ease,
+        transform 500ms ease;
+}
+
+.game-response.visible {
+
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+.game-response .response-text {
+
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    font-size: 20px;
+
+    line-height: 1.5;
+}
+
+.continue-button {
+
+    align-self: flex-start;
+
+    padding: 9px 15px;
+
+    border: 1px solid var(--line);
+
+    border-radius: 100px;
+
+    background: transparent;
+
+    color: var(--cream-soft);
+
+    font-size: 10px;
+
+    cursor: pointer;
+
+    transition:
+        background 250ms ease,
+        color 250ms ease;
+}
+
+.continue-button:active {
+
+    background: var(--cream);
+
+    color: var(--black);
+}
+
+
+/* =========================================================
+   NAME GAME
+   ========================================================= */
+
+.name-game {
+
+    margin-top: 38px;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 10px;
+}
+
+.name-game button {
+
+    min-height: 62px;
+
+    border: 1px solid var(--line);
+
+    border-radius: 15px;
+
+    background: var(--glass);
+
+    color: var(--cream-soft);
+
+    cursor: pointer;
+
+    transition:
+        transform 250ms ease,
+        background 250ms ease,
+        border-color 250ms ease;
+}
+
+.name-game button:active {
+
+    transform: scale(.96);
+}
+
+.name-game button.correct {
+
+    background: var(--wine);
+
+    color: var(--cream);
+
+    border-color: var(--wine-light);
+}
+
+
+/* =========================================================
+   NIGHT GAME
+   ========================================================= */
+
+.night-game {
+
+    position: relative;
+
+    height: 330px;
+
+    margin-top: 25px;
+
+    border:
+        1px solid var(--line);
+
+    border-radius: var(--radius);
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            180deg,
+            #080b0e,
+            #101711
+        );
+
+    transition:
+        background 800ms ease;
+}
+
+.night-game.lit {
+
+    background:
+        radial-gradient(
+            circle at 50% 75%,
+            rgba(233,223,206,.15),
+            transparent 32%
+        ),
+        linear-gradient(
+            180deg,
+            #181716,
+            #101511
+        );
+}
+
+.night-window {
+
+    position: absolute;
+
+    width: 150px;
+    height: 190px;
+
+    left: 50%;
+    top: 38px;
+
+    transform: translateX(-50%);
+
+    border: 1px solid rgba(233,223,206,.13);
+
+    background: #070b0d;
+
+    overflow: hidden;
+}
+
+.moon {
+
+    position: absolute;
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 50%;
+
+    background: var(--cream);
+
+    top: 25px;
+    right: 25px;
+
+    opacity: .85;
+
+    box-shadow:
+        0 0 35px rgba(233,223,206,.15);
+}
+
+.star {
+
+    position: absolute;
+
+    width: 3px;
+    height: 3px;
+
+    border-radius: 50%;
+
+    background: var(--cream);
+
+    opacity: .5;
+}
+
+.star-1 {
+    left: 28px;
+    top: 38px;
+}
+
+.star-2 {
+    left: 55px;
+    top: 75px;
+}
+
+.star-3 {
+    right: 30px;
+    top: 95px;
+}
+
+.star-4 {
+    left: 80px;
+    top: 28px;
+}
+
+.lamp {
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 30px;
+
+    width: 90px;
+    height: 120px;
+
+    transform: translateX(-50%);
+
+    cursor: pointer;
+}
+
+.lamp-light {
+
+    position: absolute;
+
+    width: 130px;
+    height: 130px;
+
+    left: -20px;
+    top: -20px;
+
+    border-radius: 50%;
+
+    background: rgba(233,223,206,.05);
+
+    filter: blur(25px);
+
+    transition:
+        background 600ms ease;
+}
+
+.lit .lamp-light {
+
+    background: rgba(233,223,206,.16);
+}
+
+.lamp-shade {
+
+    position: absolute;
+
+    left: 8px;
+    top: 5px;
+
+    width: 74px;
+    height: 45px;
+
+    background: var(--wine);
+
+    clip-path: polygon(15% 0, 85% 0, 100% 100%, 0 100%);
+
+    border: 1px solid rgba(233,223,206,.1);
+}
+
+.lamp-neck {
+
+    position: absolute;
+
+    left: 43px;
+    top: 48px;
+
+    width: 4px;
+    height: 40px;
+
+    background: var(--cream-soft);
+
+    opacity: .4;
+}
+
+.lamp-base {
+
+    position: absolute;
+
+    left: 24px;
+    bottom: 5px;
+
+    width: 42px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: var(--cream-soft);
+
+    opacity: .3;
+}
+
+.night-clock {
+
+    position: absolute;
+
+    left: 20px;
+    bottom: 20px;
+
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    font-size: 20px;
+
+    direction: ltr;
+
+    opacity: .7;
+}
+
+.touch-note {
+
+    position: absolute;
+
+    right: 20px;
+    bottom: 20px;
+
+    font-size: 9px;
+
+    color: var(--cream-soft);
+
+    opacity: .5;
+}
+
+
+/* =========================================================
+   COCOA GAME
+   ========================================================= */
+
+.cocoa-game {
+
+    position: relative;
+
+    margin-top: 35px;
+
+    min-height: 380px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+.cocoa-glass {
+
+    position: relative;
+
+    width: 120px;
+    height: 185px;
+
+    border:
+        1px solid rgba(233,223,206,.22);
+
+    border-top: none;
+
+    border-radius:
+        0
+        0
+        28px
+        28px;
+
+    background: rgba(255,255,255,.025);
+
+    overflow: hidden;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    color: rgba(233,223,206,.25);
+
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    letter-spacing: .12em;
+}
+
+.cocoa-liquid {
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            #8b5938,
+            #4d2b21
+        );
+
+    transition:
+        height 700ms cubic-bezier(.2,.8,.2,1);
+}
+
+.cocoa-glass span {
+
+    position: relative;
+
+    z-index: 2;
+}
+
+.cocoa-ingredients {
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 10px;
+}
+
+.cocoa-ingredients button {
+
+    padding: 15px;
+
+    border: 1px solid var(--line);
+
+    border-radius: 14px;
+
+    background: var(--glass);
+
+    color: var(--cream-soft);
+
+    cursor: pointer;
+
+    transition:
+        transform 250ms ease,
+        opacity 250ms ease,
+        background 250ms ease;
+}
+
+.cocoa-ingredients button.used {
+
+    opacity: .25;
+
+    transform: scale(.96);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   FLOWER GAME
+   ========================================================= */
+
+.flower-game {
+
+    position: relative;
+
+    height: 390px;
+
+    margin-top: 25px;
+
+    border:
+        1px solid var(--line);
+
+    border-radius: var(--radius);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(24,59,48,.22),
+            rgba(100,31,50,.08)
+        );
+
+    overflow: hidden;
+}
+
+.flower {
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 25px;
+
+    width: 150px;
+    height: 310px;
+
+    transform: translateX(-50%);
+}
+
+.flower-stem {
+
+    position: absolute;
+
+    width: 6px;
+    height: 215px;
+
+    left: 72px;
+    bottom: 0;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #183b30,
+            #285b49
+        );
+
+    transform-origin: bottom;
+
+    transition:
+        transform 800ms ease;
+}
+
+.flower-head {
+
+    position: absolute;
+
+    width: 80px;
+    height: 80px;
+
+    left: 35px;
+    top: 25px;
+
+    border-radius: 50%;
+
+    transition:
+        transform 800ms ease;
+}
+
+.flower-head span {
+
+    position: absolute;
+
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50%;
+
+    background: var(--wine);
+
+    border: 1px solid rgba(233,223,206,.12);
+}
+
+.flower-head span:nth-child(1) {
+    top: 0;
+    left: 16px;
+}
+
+.flower-head span:nth-child(2) {
+    top: 16px;
+    left: 0;
+}
+
+.flower-head span:nth-child(3) {
+    top: 16px;
+    right: 0;
+}
+
+.flower-head span:nth-child(4) {
+    bottom: 0;
+    left: 16px;
+}
+
+.flowe
