@@ -1,964 +1,728 @@
 /* =========================================================
-   AKARI — PERSONAL ARCHIVE
-   GAME ENGINE
+   AKARI — INTERACTION ENGINE
    ========================================================= */
 
+document.addEventListener("DOMContentLoaded", () => {
 
-/* =========================================================
-   BASIC STATE
-   ========================================================= */
+    /* =====================================================
+       PAGE SYSTEM
+       ===================================================== */
 
-const pages = document.querySelectorAll(".page");
+    const pages = Array.from(document.querySelectorAll(".page"));
 
-let currentPage = 0;
+    const progressNumber =
+        document.getElementById("progressNumber");
 
-const totalPages = pages.length;
-
-
-/* =========================================================
-   ELEMENTS
-   ========================================================= */
-
-const progressNumber =
-    document.getElementById("progressNumber");
-
-const progressFill =
-    document.getElementById("progressFill");
-
-const startBtn =
-    document.getElementById("startBtn");
+    const progressFill =
+        document.getElementById("progressFill");
 
 
-/* =========================================================
-   PAGE NAVIGATION
-   ========================================================= */
+    let currentPage = 0;
 
-function showPage(index) {
 
-    if (index < 0 || index >= totalPages) {
-        return;
+    function showPage(index) {
+
+        if (index < 0 || index >= pages.length) return;
+
+        pages.forEach((page, i) => {
+            page.classList.toggle("active", i === index);
+        });
+
+        currentPage = index;
+
+        updateProgress();
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
     }
 
-    pages.forEach((page, i) => {
 
-        page.classList.toggle(
-            "active",
-            i === index
+    function updateProgress() {
+
+        /*
+         * صفحه‌ی شروع را جزو مراحل بازی حساب نمی‌کنیم.
+         */
+
+        const totalSteps = pages.length - 1;
+
+        const step = Math.max(
+            0,
+            currentPage
         );
 
-    });
-
-    currentPage = index;
-
-    updateProgress();
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-}
-
-
-function updateProgress() {
-
-    const number =
-        String(currentPage).padStart(2, "0");
-
-    if (progressNumber) {
-        progressNumber.textContent = number;
-    }
-
-    if (progressFill) {
-
-        const percentage =
-            (currentPage / (totalPages - 1)) * 100;
+        const percent =
+            totalSteps > 0
+                ? (step / totalSteps) * 100
+                : 0;
 
         progressFill.style.width =
-            `${percentage}%`;
-    }
-}
+            `${percent}%`;
 
-
-/* =========================================================
-   START
-   ========================================================= */
-
-if (startBtn) {
-
-    startBtn.addEventListener(
-        "click",
-        () => {
-
-            showPage(1);
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   RESPONSE SYSTEM
-   ========================================================= */
-
-/*
-    مهم:
-
-    هیچ بازی مستقیماً صفحه بعد را باز نمی‌کند.
-
-    ترتیب:
-
-    بازی
-      ↓
-    completeGame()
-      ↓
-    پیام
-      ↓
-    مکث
-      ↓
-    دکمه ادامه
-      ↓
-    صفحه بعد
-*/
-
-
-function completeGame(
-    responseElement,
-    message,
-    nextPage
-) {
-
-    if (!responseElement) {
-        return;
+        progressNumber.textContent =
+            String(step).padStart(2, "0");
     }
 
 
-    responseElement.innerHTML = "";
+    function createContinueButton(
+        responseElement,
+        nextPage,
+        text = "ادامه ↗"
+    ) {
 
+        const button =
+            document.createElement("button");
 
-    const text =
-        document.createElement("div");
+        button.type = "button";
 
-    text.className =
-        "response-text";
+        button.className =
+            "continue-button";
 
-    text.textContent =
-        message;
-
-
-    const continueButton =
-        document.createElement("button");
-
-    continueButton.type =
-        "button";
-
-    continueButton.className =
-        "continue-button";
-
-    continueButton.textContent =
-        "ادامه‌ی آرشیو ↗";
-
-
-    responseElement.appendChild(text);
-
-    responseElement.appendChild(
-        continueButton
-    );
-
-
-    requestAnimationFrame(() => {
-
-        responseElement.classList.add(
-            "visible"
-        );
-
-    });
-
-
-    continueButton.addEventListener(
-        "click",
-        () => {
-
-            responseElement.classList.remove(
-                "visible"
-            );
-
-            setTimeout(() => {
-
-                showPage(nextPage);
-
-            }, 450);
-
-        },
-        {
-            once: true
-        }
-    );
-
-}
-
-
-/* =========================================================
-   PAGE 01
-   NAME GAME
-   ========================================================= */
-
-const nameGame =
-    document.getElementById("nameGame");
-
-const nameResponse =
-    document.getElementById("nameResponse");
-
-
-if (nameGame) {
-
-    const nameButtons =
-        nameGame.querySelectorAll("button");
-
-    let nameFinished = false;
-
-
-    nameButtons.forEach(button => {
+        button.textContent =
+            text;
 
         button.addEventListener(
             "click",
+            () => showPage(nextPage)
+        );
+
+        responseElement.appendChild(button);
+    }
+
+
+    function showResponse(
+        element,
+        text,
+        nextPage,
+        buttonText = "ادامه ↗"
+    ) {
+
+        element.innerHTML = "";
+
+        const message =
+            document.createElement("div");
+
+        message.className =
+            "response-text";
+
+        message.textContent =
+            text;
+
+        element.appendChild(message);
+
+        createContinueButton(
+            element,
+            nextPage,
+            buttonText
+        );
+
+        requestAnimationFrame(() => {
+            element.classList.add("visible");
+        });
+    }
+
+
+
+    /* =====================================================
+       START BUTTON
+       ===================================================== */
+
+    const startBtn =
+        document.getElementById("startBtn");
+
+
+    if (startBtn) {
+
+        startBtn.addEventListener(
+            "click",
             () => {
 
-                if (nameFinished) {
-                    return;
-                }
+                /*
+                 * صفحه‌ی 0 = مقدمه
+                 * صفحه‌ی 1 = اولین مینی‌گیم
+                 */
+
+                showPage(1);
+
+            }
+        );
+
+    }
 
 
-                const value =
-                    button.textContent.trim();
+
+    /* =====================================================
+       GAME 01 — NAME
+       ===================================================== */
+
+    const nameGame =
+        document.getElementById("nameGame");
+
+    const nameResponse =
+        document.getElementById("nameResponse");
 
 
-                if (value === "مهدیه") {
+    if (nameGame) {
 
-                    nameFinished = true;
+        const buttons =
+            nameGame.querySelectorAll("button");
 
-                    button.classList.add(
-                        "correct"
+
+        buttons.forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    buttons.forEach(
+                        b => b.disabled = true
                     );
 
 
-                    nameButtons.forEach(
-                        other => {
+                    if (
+                        button.textContent.trim()
+                        === "مهدیه"
+                    ) {
 
-                            if (
-                                other !== button
-                            ) {
-
-                                other.style.opacity =
-                                    ".22";
-                            }
-
-                        }
-                    );
+                        button.classList.add(
+                            "correct"
+                        );
 
 
-                    setTimeout(() => {
-
-                        completeGame(
+                        showResponse(
                             nameResponse,
-                            "بعضی اسم‌ها فقط اسم نیستند.",
+
+                            "مهدیه. چون بعضی اسم‌ها را نمی‌شود اشتباه گفت. مخصوصاً وقتی فقط در لحظه‌های مهم صدایشان می‌کنی.",
+
                             2
                         );
 
-                    }, 650);
+                    } else {
 
-                } else {
+                        button.disabled = false;
 
-                    button.animate(
-                        [
-                            {
-                                transform:
-                                    "translateX(0)"
-                            },
-                            {
-                                transform:
-                                    "translateX(-5px)"
-                            },
-                            {
-                                transform:
-                                    "translateX(5px)"
-                            },
-                            {
-                                transform:
-                                    "translateX(0)"
-                            }
-                        ],
-                        {
-                            duration: 260
-                        }
-                    );
+                        showResponse(
+                            nameResponse,
+
+                            "نه. یک بار دیگر فکر کن. این یکی را قرار نبود با حدس رد کنیم.",
+
+                            1,
+
+                            "دوباره امتحان کن"
+                        );
+
+                    }
 
                 }
+            );
 
-            }
-        );
-
-    });
-
-}
-
-
-/* =========================================================
-   PAGE 02
-   NIGHT GAME
-   ========================================================= */
-
-const nightGame =
-    document.getElementById("nightGame");
-
-const nightClock =
-    document.getElementById("nightClock");
-
-const nightResponse =
-    document.getElementById("nightResponse");
-
-
-if (nightGame) {
-
-    const lamp =
-        nightGame.querySelector(".lamp");
-
-    let hour = 2;
-
-    let minute = 17;
-
-    let taps = 0;
-
-    let nightFinished = false;
-
-
-    function updateClock() {
-
-        const h =
-            String(hour).padStart(2, "0");
-
-        const m =
-            String(minute).padStart(2, "0");
-
-
-        if (nightClock) {
-
-            nightClock.textContent =
-                `${h}:${m}`;
-        }
+        });
 
     }
 
 
-    lamp.addEventListener(
-        "click",
-        () => {
 
-            if (nightFinished) {
-                return;
-            }
+    /* =====================================================
+       GAME 02 — NIGHT
+       ===================================================== */
 
+    const nightGame =
+        document.getElementById("nightGame");
 
-            taps++;
+    const nightResponse =
+        document.getElementById("nightResponse");
 
-
-            nightGame.classList.add(
-                "lit"
-            );
-
-
-            minute += 13;
+    const lamp =
+        nightGame
+            ? nightGame.querySelector(".lamp")
+            : null;
 
 
-            if (minute >= 60) {
-
-                hour +=
-                    Math.floor(minute / 60);
-
-                minute =
-                    minute % 60;
-
-            }
+    let nightActivated = false;
 
 
-            if (hour >= 24) {
-                hour = hour % 24;
-            }
+    if (lamp) {
 
+        const activateNight =
+            () => {
 
-            updateClock();
+                if (nightActivated) return;
 
+                nightActivated = true;
 
-            lamp.animate(
-                [
-                    {
-                        transform:
-                            "translateX(-50%) scale(1)"
-                    },
-                    {
-                        transform:
-                            "translateX(-50%) scale(.94)"
-                    },
-                    {
-                        transform:
-                            "translateX(-50%) scale(1)"
-                    }
-                ],
-                {
-                    duration: 300
-                }
-            );
+                nightGame.classList.add("lit");
 
-
-            if (taps >= 5) {
-
-                nightFinished = true;
-
-
-                setTimeout(() => {
-
-                    completeGame(
-                        nightResponse,
-                        "بعضی شب‌ها قرار نبود زود تمام شوند.",
-                        3
+                const clock =
+                    document.getElementById(
+                        "nightClock"
                     );
 
-                }, 800);
-
-            }
-
-        }
-    );
-
-}
+                if (clock) {
+                    clock.textContent =
+                        "تا صبح";
+                }
 
 
-/* =========================================================
-   PAGE 03
-   COCOA GAME
-   ========================================================= */
+                showResponse(
+                    nightResponse,
 
-const cocoaIngredients =
-    document.getElementById(
-        "cocoaIngredients"
-    );
+                    "بعضی شب‌ها واقعاً قرار نبود زود تمام شوند. حرف داشتیم، خنده داشتیم، تعریف کردنِ تمام اتفاقات روز را داشتیم... و گاهی تا صبح.",
 
-const cocoaLiquid =
-    document.getElementById(
-        "cocoaLiquid"
-    );
+                    3
+                );
 
-const cocoaResponse =
-    document.getElementById(
-        "cocoaResponse"
-    );
+            };
 
 
-if (cocoaIngredients) {
-
-    const buttons =
-        cocoaIngredients.querySelectorAll(
-            "button"
+        lamp.addEventListener(
+            "click",
+            activateNight
         );
 
 
-    const required =
-        new Set([
-            "milk",
-            "cocoa",
-            "laugh"
-        ]);
-
-
-    const selected =
-        new Set();
-
-
-    let cocoaFinished = false;
-
-
-    buttons.forEach(button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                if (cocoaFinished) {
-                    return;
-                }
-
-
-                const ingredient =
-                    button.dataset.ingredient;
-
+        lamp.addEventListener(
+            "keydown",
+            event => {
 
                 if (
-                    selected.has(
-                        ingredient
-                    )
+                    event.key === "Enter" ||
+                    event.key === " "
                 ) {
-                    return;
+
+                    event.preventDefault();
+
+                    activateNight();
+
                 }
 
+            }
+        );
 
-                selected.add(
-                    ingredient
-                );
-
-
-                button.classList.add(
-                    "used"
-                );
+    }
 
 
-                const amount =
-                    Math.min(
-                        selected.size * 34,
-                        100
+
+    /* =====================================================
+       GAME 03 — COCOA
+       ===================================================== */
+
+    const cocoaGame =
+        document.getElementById("cocoaIngredients");
+
+    const cocoaResponse =
+        document.getElementById("cocoaResponse");
+
+    const cocoaLiquid =
+        document.getElementById("cocoaLiquid");
+
+
+    let cocoaProgress = 0;
+
+
+    if (cocoaGame) {
+
+        const ingredients =
+            cocoaGame.querySelectorAll(
+                "button"
+            );
+
+
+        ingredients.forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    if (
+                        button.classList.contains(
+                            "used"
+                        )
+                    ) return;
+
+
+                    button.classList.add(
+                        "used"
                     );
 
-
-                if (cocoaLiquid) {
-
-                    cocoaLiquid.style.height =
-                        `${amount}%`;
-
-                }
+                    cocoaProgress++;
 
 
-                if (
-                    [...required].every(
-                        item =>
-                            selected.has(item)
-                    )
-                ) {
+                    if (cocoaLiquid) {
 
-                    cocoaFinished = true;
+                        cocoaLiquid.style.height =
+                            `${Math.min(
+                                cocoaProgress * 25,
+                                100
+                            )}%`;
+
+                    }
 
 
-                    setTimeout(() => {
+                    if (cocoaProgress >= 4) {
 
-                        completeGame(
+                        showResponse(
                             cocoaResponse,
-                            "نسخه‌ی درستش همیشه کمی خنده هم لازم داشت.",
+
+                            "فرمول نهایی مشخص شد: شیرکاکائو، کمی آرامش، یک عالمه خنده و یک آدم که احتمالاً باز هم سر چیزی باهاش بحث می‌کنی.",
+
                             4
                         );
 
-                    }, 900);
+                    }
 
                 }
-
-            }
-        );
-
-    });
-
-}
-
-
-/* =========================================================
-   PAGE 04
-   FLOWER GAME
-   ========================================================= */
-
-const flowerGame =
-    document.getElementById(
-        "flowerGame"
-    );
-
-const flowerResponse =
-    document.getElementById(
-        "flowerResponse"
-    );
-
-
-if (flowerGame) {
-
-    const weights =
-        flowerGame.querySelectorAll(
-            ".weight"
-        );
-
-    let removed =
-        0;
-
-    let flowerFinished =
-        false;
-
-
-    weights.forEach(weight => {
-
-        weight.addEventListener(
-            "click",
-            () => {
-
-                if (flowerFinished) {
-                    return;
-                }
-
-
-                weight.classList.add(
-                    "removed"
-                );
-
-
-                removed++;
-
-
-                const stem =
-                    flowerGame.querySelector(
-                        ".flower-stem"
-                    );
-
-                const head =
-                    flowerGame.querySelector(
-                        ".flower-head"
-                    );
-
-
-                if (stem) {
-
-                    const angle =
-                        9 - removed * 2;
-
-                    stem.style.transform =
-                        `rotate(${angle}deg)`;
-                }
-
-
-                if (head) {
-
-                    head.style.transform =
-                        `translateY(${-removed * 4}px)`;
-                }
-
-
-                if (removed >= weights.length) {
-
-                    flowerFinished = true;
-
-
-                    setTimeout(() => {
-
-                        completeGame(
-                            flowerResponse,
-                            "بعضی چیزها وقتی کنار می‌روند، تازه می‌شود نفس کشید.",
-                            5
-                        );
-
-                    }, 850);
-
-                }
-
-            }
-        );
-
-    });
-
-}
-
-
-/* =========================================================
-   PAGE 05
-   DOG & CAT GAME
-   ========================================================= */
-
-const animalGame =
-    document.getElementById(
-        "animalGame"
-    );
-
-const dog =
-    document.getElementById(
-        "dog"
-    );
-
-const cat =
-    document.getElementById(
-        "cat"
-    );
-
-const animalResponse =
-    document.getElementById(
-        "animalResponse"
-    );
-
-
-if (
-    animalGame &&
-    dog &&
-    cat
-) {
-
-    let touches =
-        0;
-
-    let animalFinished =
-        false;
-
-
-    function moveAnimals() {
-
-        const width =
-            animalGame.clientWidth;
-
-
-        const distance =
-            Math.max(
-                30,
-                Math.min(
-                    width * .28,
-                    100
-                )
             );
 
-
-        dog.style.left =
-            `${distance}px`;
-
-        cat.style.right =
-            `${distance}px`;
+        });
 
     }
 
 
-    animalGame.addEventListener(
-        "click",
-        () => {
 
-            if (animalFinished) {
-                return;
-            }
+    /* =====================================================
+       GAME 04 — FLOWER
+       ===================================================== */
 
+    const flowerGame =
+        document.getElementById("flowerGame");
 
-            touches++;
-
-
-            moveAnimals();
+    const flowerResponse =
+        document.getElementById("flowerResponse");
 
 
-            animalGame.animate(
-                [
-                    {
-                        transform:
-                            "scale(1)"
-                    },
-                    {
-                        transform:
-                            "scale(1.015)"
-                    },
-                    {
-                        transform:
-                            "scale(1)"
-                    }
-                ],
-                {
-                    duration: 350
-                }
+    let removedWeights = 0;
+
+
+    if (flowerGame) {
+
+        const weights =
+            flowerGame.querySelectorAll(
+                ".weight"
             );
 
 
-            if (touches >= 3) {
+        weights.forEach(weight => {
 
-                animalFinished = true;
+            weight.addEventListener(
+                "click",
+                () => {
+
+                    if (
+                        weight.classList.contains(
+                            "removed"
+                        )
+                    ) return;
 
 
-                dog.style.left =
-                    "calc(50% - 80px)";
+                    weight.classList.add(
+                        "removed"
+                    );
 
-                cat.style.right =
-                    "calc(50% - 80px)";
+                    removedWeights++;
 
 
-                setTimeout(() => {
+                    if (removedWeights >= weights.length) {
 
-                    completeGame(
+                        showResponse(
+                            flowerResponse,
+
+                            "همه را نمی‌شود نگه داشت. بعضی دلخوری‌ها، بعضی غرورها و بعضی انتظارها فقط سنگین‌ترمان می‌کنند. گاهی سبک‌تر بودن، بد نیست.",
+
+                            5
+                        );
+
+                    }
+
+                }
+            );
+
+        });
+
+    }
+
+
+
+    /* =====================================================
+       GAME 05 — DOG & CAT
+       ===================================================== */
+
+    const animalGame =
+        document.getElementById("animalGame");
+
+    const animalResponse =
+        document.getElementById("animalResponse");
+
+    const dog =
+        document.getElementById("dog");
+
+    const cat =
+        document.getElementById("cat");
+
+
+    let animalTouches = 0;
+
+
+    if (animalGame) {
+
+        animalGame.addEventListener(
+            "click",
+            event => {
+
+                /*
+                 * فقط وقتی روی خود حیوان‌ها
+                 * کلیک شده باشد.
+                 */
+
+                const target =
+                    event.target.closest(
+                        ".animal"
+                    );
+
+                if (!target) return;
+
+
+                animalTouches++;
+
+
+                if (animalTouches === 1) {
+
+                    dog.style.left =
+                        "38%";
+
+                    cat.style.right =
+                        "38%";
+
+                }
+
+
+                if (animalTouches === 2) {
+
+                    dog.style.left =
+                        "45%";
+
+                    cat.style.right =
+                        "45%";
+
+                }
+
+
+                if (animalTouches >= 3) {
+
+                    showResponse(
                         animalResponse,
-                        "شاید همیشه شبیه سگ و گربه بودیم. ولی بعضی شب‌ها واقعاً خوب بود.",
+
+                        "ما واقعاً استاد این بودیم که مثل سگ و گربه به هم بپریم، و چند ساعت بعد طوری بخندیم که انگار هیچ اتفاقی نیفتاده. عجیب بود. ولی واقعی بود.",
+
                         6
                     );
 
-                }, 900);
+                }
 
             }
+        );
 
-        }
-    );
-
-}
+    }
 
 
-/* =========================================================
-   PAGE 06
-   WRITING GAME
-   ========================================================= */
 
-const wordGame =
-    document.getElementById(
-        "wordGame"
-    );
+    /* =====================================================
+       GAME 06 — WRITING
+       ===================================================== */
 
-const sentence =
-    document.getElementById(
-        "sentence"
-    );
+    const wordGame =
+        document.getElementById("wordGame");
 
-const lastDrawerBtn =
-    document.getElementById(
-        "lastDrawerBtn"
-    );
+    const sentence =
+        document.getElementById("sentence");
 
-
-if (
-    wordGame &&
-    sentence
-) {
-
-    const buttons =
-        wordGame.querySelectorAll(
-            "button"
+    const lastDrawerBtn =
+        document.getElementById(
+            "lastDrawerBtn"
         );
 
 
-    const selectedWords =
-        [];
+    const selectedWords = [];
 
 
-    let writingFinished =
-        false;
+    if (wordGame) {
+
+        const words =
+            wordGame.querySelectorAll(
+                "button"
+            );
 
 
-    buttons.forEach(button => {
+        words.forEach(button => {
 
-        button.addEventListener(
+            button.addEventListener(
+                "click",
+                () => {
+
+                    const word =
+                        button.textContent.trim();
+
+
+                    /*
+                     * حذف کلمه‌ی انتخاب‌شده
+                     */
+
+                    if (
+                        button.classList.contains(
+                            "selected"
+                        )
+                    ) {
+
+                        button.classList.remove(
+                            "selected"
+                        );
+
+                        const index =
+                            selectedWords.indexOf(
+                                word
+                            );
+
+                        if (index !== -1) {
+                            selectedWords.splice(
+                                index,
+                                1
+                            );
+                        }
+
+                    }
+
+                    /*
+                     * اضافه کردن کلمه
+                     */
+
+                    else {
+
+                        if (
+                            selectedWords.length >= 3
+                        ) return;
+
+                        button.classList.add(
+                            "selected"
+                        );
+
+                        selectedWords.push(
+                            word
+                        );
+
+                    }
+
+
+                    updateSentence();
+
+                }
+            );
+
+        });
+
+    }
+
+
+    function updateSentence() {
+
+        if (!sentence) return;
+
+
+        if (selectedWords.length === 0) {
+
+            sentence.textContent =
+                "سه کلمه را انتخاب کن.";
+
+            sentence.classList.remove(
+                "has-words"
+            );
+
+            lastDrawerBtn.classList.add(
+                "hidden"
+            );
+
+            return;
+
+        }
+
+
+        sentence.classList.add(
+            "has-words"
+        );
+
+
+        sentence.innerHTML =
+            selectedWords
+                .map(
+                    word =>
+                        `<span>${word}</span>`
+                )
+                .join(" · ");
+
+
+        if (
+            selectedWords.length === 3
+        ) {
+
+            lastDrawerBtn.classList.remove(
+                "hidden"
+            );
+
+        } else {
+
+            lastDrawerBtn.classList.add(
+                "hidden"
+            );
+
+        }
+
+    }
+
+
+
+    /* =====================================================
+       LAST DRAWER BUTTON
+       ===================================================== */
+
+    if (lastDrawerBtn) {
+
+        lastDrawerBtn.addEventListener(
             "click",
             () => {
 
-                if (writingFinished) {
-                    return;
-                }
-
-
-                if (
-                    selectedWords.length >= 3
-                ) {
-                    return;
-                }
-
-
-                const word =
-                    button.textContent.trim();
-
-
-                if (
-                    selectedWords.includes(
-                        word
-                    )
-                ) {
-                    return;
-                }
-
-
-                selectedWords.push(
-                    word
-                );
-
-
-                button.classList.add(
-                    "selected"
-                );
-
-
-                sentence.classList.add(
-                    "has-words"
-                );
-
-
-                sentence.innerHTML =
-                    selectedWords
-                        .map(
-                            item =>
-                                `<span>${item}</span>`
-                        )
-                        .join(" · ");
-
-
-                if (
-                    selectedWords.length === 3
-                ) {
-
-                    writingFinished =
-                        true;
-
-
-                    setTimeout(() => {
-
-                        sentence.innerHTML =
-                            `
-                            <span>
-                                ${selectedWords.join("، ")}
-                            </span>
-                            `;
-
-
-                        if (lastDrawerBtn) {
-
-                            lastDrawerBtn.classList.remove(
-                                "hidden"
-                            );
-
-                        }
-
-                    }, 600);
-
-                }
+                showPage(7);
 
             }
         );
 
-    });
-
-}
+    }
 
 
-/* =========================================================
-   FINAL DRAWER
-   ========================================================= */
 
-const openDrawerBtn =
-    document.getElementById(
-        "openDrawerBtn"
-    );
+    /* =====================================================
+       FINAL DRAWER
+       ===================================================== */
 
-const drawer =
-    document.getElementById(
-        "drawer"
-    );
+    const openDrawerBtn =
+        document.getElementById(
+            "openDrawerBtn"
+        );
 
-const finalMessage =
-    document.getElementById(
-        "finalMessage"
-    );
+    const drawer =
+        document.getElementById(
+            "drawer"
+        );
 
-
-if (
-    openDrawerBtn &&
-    drawer &&
-    finalMessage
-) {
-
-    openDrawerBtn.addEventListener(
-        "click",
-        () => {
-
-            drawer.style.opacity =
-                "0";
-
-            drawer.style.transform =
-                "translateY(-20px) scale(.97)";
+    const finalMessage =
+        document.getElementById(
+            "finalMessage"
+        );
 
 
-            setTimeout(() => {
+    if (openDrawerBtn) {
+
+        openDrawerBtn.addEventListener(
+            "click",
+            () => {
 
                 drawer.classList.add(
                     "hidden"
@@ -968,56 +732,22 @@ if (
                     "hidden"
                 );
 
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
 
-            }, 650);
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   LAST DRAWER FROM WRITING PAGE
-   ========================================================= */
-
-if (lastDrawerBtn) {
-
-    lastDrawerBtn.addEventListener(
-        "click",
-        () => {
-
-            showPage(7);
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   INITIALIZE
-   ========================================================= */
-
-showPage(0);
-
-
-/* =========================================================
-   PREVENT ACCIDENTAL FORM BEHAVIOR
-   ========================================================= */
-
-document.addEventListener(
-    "keydown",
-    event => {
-
-        if (
-            event.key === "Enter" &&
-            document.activeElement?.tagName === "BUTTON"
-        ) {
-
-            event.preventDefault();
-
-        }
+            }
+        );
 
     }
-);
+
+
+
+    /* =====================================================
+       INITIAL STATE
+       ===================================================== */
+
+    showPage(0);
+
+});
