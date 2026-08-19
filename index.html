@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>یک روز خاص</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Ambient background -->
+    <div class="noise"></div>
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
+
+    <!-- =========================
+         INTRO
+    ========================== -->
+
+    <main id="app">
+
+        <section class="screen active" id="screen-1">
+
+            <div class="intro-decoration">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <p class="eyebrow">A SMALL THING FOR A SPECIAL DAY</p>
+
+            <h1>
+                یک روز،
+                <br>
+                <em>دو تولد.</em>
+            </h1>
+
+            <p class="intro-text">
+                بعضی تاریخ‌ها معمولی نیستن.
+                <br>
+                مثلاً تاریخی که تو و من،
+                هر دو برای اولین بار به دنیا اومدیم.
+            </p>
+
+            <button class="main-button" onclick="nextScreen()">
+                شروع کنیم
+                <span>↗</span>
+            </button>
+
+            <div class="date-mark">
+                SAME DAY<br>
+                DIFFERENT STORIES
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CAT
+        ========================== -->
+
+        <section class="screen" id="screen-2">
+
+            <div class="section-number">01</div>
+
+            <div class="content-grid">
+
+                <div class="visual-card cat-card">
+                    <div class="card-overlay"></div>
+
+                    <img src="assets/cat.jpg" alt="گربه">
+
+                    <span class="image-label">CAT / 01</span>
+                </div>
+
+                <div class="text-content">
+
+                    <span class="small-title">اول از همه...</span>
+
+                    <h2>
+                        احتمالاً
+                        <br>
+                        یه گربه
+                        <em>لازم داریم.</em>
+                    </h2>
+
+                    <p>
+                        چون اگر قرار باشه چیزی از علایق تو
+                        اینجا باشه، حذف گربه تقریباً یک جنایت
+                        فرهنگی محسوب می‌شه.
+                    </p>
+
+                    <button class="text-button" onclick="nextScreen()">
+                        ادامه
+                        <span>→</span>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CHOCOLATE MILK
+        ========================== -->
+
+        <section class="screen" id="screen-3">
+
+            <div class="section-number">02</div>
+
+            <div class="chocolate-scene">
+
+                <div class="chocolate-bottle">
+                    <div class="bottle-cap"></div>
+
+                    <div class="bottle-label">
+                        <small>PRIVATE RECIPE</small>
+                        <strong>CHOCOLATE</strong>
+                        <span>MILK</span>
+                    </div>
+                </div>
+
+                <div class="chocolate-shadow"></div>
+
+            </div>
+
+            <div class="center-copy">
+
+                <span class="small-title">برای یک استراحت کوتاه</span>
+
+                <h2>
+                    شیرکاکائو،
+                    <br>
+                    چون <em>دلایل بیشتری لازم نیست.</em>
+                </h2>
+
+                <p>
+                    بعضی چیزها احتیاج به توضیح ندارن.
+                    شیرکاکائو هم یکی از اون‌هاست.
+                </p>
+
+                <button class="text-button" onclick="nextScreen()">
+                    ادامه
+                    <span>→</span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FLOWERS
+        ========================== -->
+
+        <section class="screen" id="screen-4">
+
+            <div class="section-number">03</div>
+
+            <div class="flower-layout">
+
+                <div class="flower-copy">
+
+                    <span class="small-title">یک چیز سبز، یک چیز زرشکی</span>
+
+                    <h2>
+                        بعضی گل‌ها
+                        <br>
+                        برای <em>گلدون نیستن.</em>
+                    </h2>
+
+                    <p>
+                        بعضی‌هاشون فقط باید جایی باشن
+                        که وقتی نگاهشون می‌کنی،
+                        یادت بیاد یک نفر به فکر تو بوده.
+                    </p>
+
+                    <button class="text-button" onclick="nextScreen()">
+                        برگ بعدی
+                        <span>→</span>
+                    </button>
+
+                </div>
+
+                <div class="flower-art">
+
+                    <div class="stem stem-one"></div>
+                    <div class="stem stem-two"></div>
+
+                    <div class="flower flower-one">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <div class="flower flower-two">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             WRITING
+        ========================== -->
+
+        <section class="screen paper-screen" id="screen-5">
+
+            <div class="section-number">04</div>
+
+            <div class="paper">
+
+                <div class="paper-top">
+                    <span>20 / 08</span>
+                    <span>FOR YOU</span>
+                </div>
+
+                <div class="paper-content">
+
+                    <span class="hand-label">یک صفحه از این روز</span>
+
+                    <h2>
+                        برای کسی که
+                        <br>
+                        <em>می‌نویسه...</em>
+                    </h2>
+
+                    <p>
+                        شاید قشنگ‌ترین چیز درباره‌ی نوشتن
+                        اینه که آدم می‌تونه چیزی رو که توی
+                        ذهنشه، برای چند لحظه نگه داره.
+                    </p>
+
+                    <p>
+                        این صفحه هم فقط برای همینه.
+                        برای اینکه این روز،
+                        یک جایی ثبت شده باشه.
+                    </p>
+
+                    <button class="paper-button" onclick="nextScreen()">
+                        صفحه‌ی آخر
+                    </button>
+
+                </div>
+
+                <div class="paper-flower">✦</div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FINAL
+        ========================== -->
+
+        <section class="screen final-screen" id="screen-6">
+
+            <div class="final-background"></div>
+
+            <div class="final-content">
+
+                <span class="final-small">
+                    SAME BIRTHDAY · DIFFERENT STORY
+                </span>
+
+                <h1>
+                    تولدت
+                    <br>
+                    <em>مبارک.</em>
+                </h1>
+
+                <div class="final-line"></div>
+
+                <p class="final-message">
+                    خدا بود.
+                </p>
+
+                <p class="signature">
+                    برای یک آدم خاص،
+                    <br>
+                    از یک تاریخ مشترک.
+                </p>
+
+                <button class="restart-button" onclick="restart()">
+                    ↻ دوباره
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Progress -->
+    <div class="progress">
+        <span class="progress-current">01</span>
+        <div class="progress-line">
+            <div id="progress-bar"></div>
+        </div>
+        <span>06</span>
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+  </html>
